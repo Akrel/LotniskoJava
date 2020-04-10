@@ -26,7 +26,7 @@ public class MyApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        fxmlLoader.setLocation((getClass().getResource("/fxml/sample.fxml")));
+        fxmlLoader.setLocation((getClass().getResource("/sample.fxml")));
         rootNode = fxmlLoader.load();
 
         primaryStage.setTitle("hello World");
