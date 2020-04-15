@@ -1,13 +1,19 @@
 package com.example.accessingdatamysql;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import static javafx.application.Application.launch;
 
@@ -16,6 +22,7 @@ public class MyApp extends Application {
     private ConfigurableApplicationContext springContext;
     private Parent rootNode;
     private FXMLLoader fxmlLoader;
+    private Stage stage;
 
     @Override
     public void init() throws Exception{
@@ -25,13 +32,14 @@ public class MyApp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        fxmlLoader.setLocation((getClass().getResource("/sample.fxml")));
-        rootNode = fxmlLoader.load();
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
+        stage.initStyle(StageStyle.UNDECORATED);
+        Scene scene = new Scene(root);
 
-        primaryStage.setTitle("hello World");
-        Scene scene = new Scene(rootNode,800,600);
-        primaryStage.show();
+        stage.setScene(scene);
+        this.stage = stage;
+        stage.show();
     }
 
     @Override
@@ -43,5 +51,6 @@ public class MyApp extends Application {
     {
         launch(args);
     }
+
 
 }
