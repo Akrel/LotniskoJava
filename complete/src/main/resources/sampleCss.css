@@ -2,3 +2,48 @@
 FontAwesomeIcon:hover {
     -fx-cursor: hand;
 }
+
+
+
+#vb-sidebar .sidebar-button  {
+    -fx-text-fill: white;
+    -fx-cursor:hand;
+}
+
+#vb-sidebar .sidebar-button:hover {
+    -fx-background-color:#083cbf;
+    -fx-text-fill:#c3becc;
+    
+    -fx-cursor:hand;
+}
+#vb-sidebar .sidebar-button:hover .glyphIcon{
+          -fx-fill:#28252e;
+}
+
+#vb-sidebar .sidebar-button-active {
+    -fx-background-color:#black;
+    -fx-cursor:hand;
+}
+
+#vb-sidebar .slider-button {
+    -fx-background-color:#33ff33;
+    -fx-text-fill: green;
+    -fx-cursor:hand;
+           
+}
+
+.glyphIcon:hover{
+    -fx-fill: black;
+}
+
+
+
+
+
+
+
+#vb-sidebar .slider-fxbutton:hover {
+    -fx-background-color:#66ff66;
+    -fx-text-fill: green;
+    -fx-cursor:hand;
+}

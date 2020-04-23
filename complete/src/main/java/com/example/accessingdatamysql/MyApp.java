@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.boot.SpringApplication;
@@ -43,7 +42,6 @@ public class MyApp extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MyApp.class.getResource("/sample.fxml"));
         AnchorPane menuAir = loader.load();
-
     }
 
 
