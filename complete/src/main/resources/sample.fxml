@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="700.0" prefWidth="900.0" stylesheets="@sampleCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.accessingdatamysql.MyAppController">
    <children>
-      <AnchorPane layoutX="137.0" layoutY="30.0" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="670.0" prefWidth="763.0" style="-fx-background-color: #E1F7FA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <AnchorPane layoutX="137.0" layoutY="30.0" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="670.0" prefWidth="760.0" style="-fx-background-color: #E1F7FA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
          <children>
-            <VBox fx:id="vUserSlideBox" alignment="TOP_CENTER" layoutX="-23.0" prefHeight="670.0" prefWidth="200.0" style="-fx-background-color: #74bae8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-23.0" AnchorPane.topAnchor="0.0">
+            <VBox fx:id="vUserSlideBox" alignment="TOP_CENTER" prefHeight="670.0" prefWidth="170.0" style="-fx-background-color: #74bae8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXButton prefHeight="50.0" prefWidth="170.0">
                      <VBox.margin>
@@ -45,7 +45,7 @@
             </FontAwesomeIcon>
          </children>
       </HBox>
-      <VBox id="vb-sidebar" alignment="TOP_CENTER" layoutY="30.0" prefHeight="670.0" prefWidth="137.0" style="-fx-background-color: #0a5991;" styleClass="slider-fxbutton" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <VBox id="vb-sidebar" alignment="TOP_CENTER" layoutY="30.0" prefHeight="670.0" prefWidth="140.0" style="-fx-background-color: #0a5991;" styleClass="slider-fxbutton" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
          <children>
             <JFXButton id="user_button" fx:id="buttonUser" alignment="CENTER" prefHeight="75.0" prefWidth="160.0" styleClass="sidebar-button" text="USER" textFill="WHITE">
                <graphic>
