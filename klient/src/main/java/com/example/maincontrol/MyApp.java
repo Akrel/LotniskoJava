@@ -7,11 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
 
 
 @SpringBootApplication
@@ -45,7 +48,13 @@ public class MyApp extends Application {
     }
 
 
-
+    @Test
+    public void givenGreetingClient_whenServerRespondsWhenStarted_thenCorrect() throws IOException {
+        ClientControl client = new ClientControl();
+        client.startConnection("127.0.0.1", 6666);
+        String response = client.sendMessage("hello server");
+        assertEquals("hello client", response);
+    }
 
     @Override
     public void stop(){
