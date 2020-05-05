@@ -27,7 +27,6 @@ public class Flights {
     }
 
 
-
     public Integer getId() {
         return id;
     }

@@ -24,23 +24,24 @@ public class MyApp extends Application {
     private FXMLLoader fxmlLoader;
 
     @Override
-    public void init() throws Exception{
+    public void init() throws Exception {
         springContext = SpringApplication.run(MyApp.class);
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(springContext::getBean);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         fxmlLoader.setLocation((getClass().getResource("/sample.fxml")));
         rootNode = fxmlLoader.load();
 
-       // primaryStage.setTitle("hello World");
+        // primaryStage.setTitle("hello World");
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        Scene scene = new Scene(rootNode,800,600);
+        Scene scene = new Scene(rootNode, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
     public static void showMenuAirport() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MyApp.class.getResource("/sample.fxml"));
@@ -57,12 +58,11 @@ public class MyApp extends Application {
     }
 
     @Override
-    public void stop(){
+    public void stop() {
         springContext.stop();
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         launch(args);
     }
 

@@ -1,6 +1,8 @@
 package com.example.mainserverpackage;
+
 import java.net.*;
 import java.io.*;
+
 public class AirportControlServer {
     private ServerSocket serverSocket;
     private Socket clientSocket;
@@ -10,17 +12,15 @@ public class AirportControlServer {
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
-        out = new PrintWriter(clientSocket.getOutputStream(),true);
+        out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
         String greeting = in.readLine();
-            if("hello server".equals(greeting))
-            {
-                out.println("hello client");
-            }
-            else {
-                out.println("greeting");
-            }
+        if ("hello server".equals(greeting)) {
+            out.println("hello client");
+        } else {
+            out.println("greeting");
+        }
 
     }
 
@@ -35,7 +35,6 @@ public class AirportControlServer {
         AirportControlServer server = new AirportControlServer();
         server.start(6666);
     }
-
 
 
 }

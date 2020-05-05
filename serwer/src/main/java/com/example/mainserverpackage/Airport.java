@@ -5,16 +5,16 @@ import java.util.Set;
 
 @Entity
 public class Airport {
-   @Id
-   @Column(name = "KOD_LOTN",nullable = false)
+    @Id
+    @Column(name = "KOD_LOTN", nullable = false)
     private String kod_lotniska;
     private String kraj;
     private String miasto;
 
-  @OneToMany(mappedBy = "destination")
-  private Set<Flights>flights;
-  @OneToMany(mappedBy = "orgin")
-  private Set<Flights>flightsOrg;
+    @OneToMany(mappedBy = "destination")
+    private Set<Flights> flights;
+    @OneToMany(mappedBy = "orgin")
+    private Set<Flights> flightsOrg;
 
     public String getKod_lotniska() {
         return kod_lotniska;
@@ -36,7 +36,6 @@ public class Airport {
     public String getMiasto() {
         return miasto;
     }
-
 
 
     public void setKraj(String kraj) {

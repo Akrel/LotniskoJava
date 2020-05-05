@@ -10,50 +10,57 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="670.0" prefWidth="760.0" style="-fx-background-color: #E1F7FA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightSearch">
+<AnchorPane prefHeight="670.0" prefWidth="760.0" style="-fx-background-color: #E1F7FA;"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightSearch">
     <children>
-        <VBox layoutX="184.0" layoutY="55.0" prefHeight="465.0" prefWidth="360.0" style="-fx-background-color: #646b73;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="55.0">
+        <VBox layoutX="184.0" layoutY="55.0" prefHeight="465.0" prefWidth="360.0" style="-fx-background-color: #646b73;"
+              AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0"
+              AnchorPane.topAnchor="55.0">
             <children>
-                <Label prefHeight="86.0" prefWidth="360.0" style="-fx-background-color: #37485c;" text="AGENT LOGIN" textFill="WHITE">
+                <Label prefHeight="86.0" prefWidth="360.0" style="-fx-background-color: #37485c;" text="AGENT LOGIN"
+                       textFill="WHITE">
                     <VBox.margin>
-                        <Insets top="50.0" />
+                        <Insets top="50.0"/>
                     </VBox.margin>
                     <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="24.0"/>
                     </font>
                     <padding>
-                        <Insets left="107.0" right="50.0" />
+                        <Insets left="107.0" right="50.0"/>
                     </padding>
                 </Label>
-                <JFXTextField prefHeight="29.0" prefWidth="193.0" promptText="E-mail" style="-fx-background-color: #d0d5db;">
+                <JFXTextField prefHeight="29.0" prefWidth="193.0" promptText="E-mail"
+                              style="-fx-background-color: #d0d5db;">
                     <VBox.margin>
-                        <Insets left="85.0" right="85.0" top="30.0" />
+                        <Insets left="85.0" right="85.0" top="30.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <JFXPasswordField promptText="Password" style="-fx-background-color: #d0d5db;">
                     <VBox.margin>
-                        <Insets left="85.0" right="85.0" top="30.0" />
+                        <Insets left="85.0" right="85.0" top="30.0"/>
                     </VBox.margin>
                 </JFXPasswordField>
-            <JFXPasswordField promptText="Secure Code" style="-fx-background-color: #d0d5db;" unFocusColor="#756a6a">
-               <VBox.margin>
-                  <Insets left="85.0" right="85.0" top="30.0" />
-               </VBox.margin>
-            </JFXPasswordField>
+                <JFXPasswordField promptText="Secure Code" style="-fx-background-color: #d0d5db;"
+                                  unFocusColor="#756a6a">
+                    <VBox.margin>
+                        <Insets left="85.0" right="85.0" top="30.0"/>
+                    </VBox.margin>
+                </JFXPasswordField>
                 <Hyperlink prefHeight="28.0" prefWidth="107.0" style="-fx-text-fill: black;" text="Reset Password">
                     <VBox.margin>
-                        <Insets left="125.0" right="100.0" top="13.0" />
+                        <Insets left="125.0" right="100.0" top="13.0"/>
                     </VBox.margin>
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </Hyperlink>
-                <JFXButton prefHeight="57.0" prefWidth="243.0" style="-fx-background-color: #37485c;" text="ZALOGUJ" textFill="#fffdfd">
+                <JFXButton prefHeight="57.0" prefWidth="243.0" style="-fx-background-color: #37485c;" text="ZALOGUJ"
+                           textFill="#fffdfd">
                     <VBox.margin>
-                        <Insets left="100.0" right="100.0" top="32.0" />
+                        <Insets left="100.0" right="100.0" top="32.0"/>
                     </VBox.margin>
                     <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="18.0"/>
                     </font>
                 </JFXButton>
             </children>

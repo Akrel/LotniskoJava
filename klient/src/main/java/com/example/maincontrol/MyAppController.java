@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.springframework.stereotype.Component;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,55 +37,49 @@ public class MyAppController implements Initializable {
     }
 
     @FXML
-    void draged(MouseEvent event)
-    {
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setX(event.getScreenX() -x);
+    void draged(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX() - x);
         stage.setY(event.getScreenY() - y);
     }
 
 
     @FXML
     void max(MouseEvent event) {
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setFullScreenExitHint(" ");
-        if(stage.isFullScreen())
-        {
+        if (stage.isFullScreen()) {
             stage.setFullScreen(false);
-        }
-        else {
+        } else {
             stage.setFullScreen(true);
         }
     }
 
     @FXML
     void min(MouseEvent event) {
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
 
     }
 
     @FXML
     void close(MouseEvent event) {
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
-
-
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        openNav = new TranslateTransition(Duration.millis(100),vUserSlideBox);
-        openNav.setToX(vUserSlideBox.getTranslateX()-vUserSlideBox.getWidth());
-        closeNav = new TranslateTransition(Duration.millis(100),vUserSlideBox);
-        closeFastNav = new TranslateTransition(Duration.millis(.1),vUserSlideBox);
+        openNav = new TranslateTransition(Duration.millis(100), vUserSlideBox);
+        openNav.setToX(vUserSlideBox.getTranslateX() - vUserSlideBox.getWidth());
+        closeNav = new TranslateTransition(Duration.millis(100), vUserSlideBox);
+        closeFastNav = new TranslateTransition(Duration.millis(.1), vUserSlideBox);
 
-        buttonUser.setOnAction((ActionEvent event)-> {
+        buttonUser.setOnAction((ActionEvent event) -> {
             buttonUserHover();
         });
-
 
 
         Platform.runLater(new Runnable() {
@@ -96,28 +91,27 @@ public class MyAppController implements Initializable {
             }
         });
     }
-    public void hideAllSliderMenu(){
+
+    public void hideAllSliderMenu() {
         userSlideBarHide();
     }
 
 
-    public void userSlideBarHide()
-    {
+    public void userSlideBarHide() {
         buttonUser.getStyleClass().remove("side-button-active");
         buttonUser.getStyleClass().addAll("sidebar-button");
         closeNav.setToX(-(vUserSlideBox.getWidth()));
         closeNav.play();
 
     }
-    public void buttonUserHover(){
-        if((vUserSlideBox.getTranslateX()) == -(vUserSlideBox.getWidth()))
-        {
-           buttonUser.getStyleClass().remove("side-button");
-           buttonUser.getStyleClass().add("sidebar-button-active");
+
+    public void buttonUserHover() {
+        if ((vUserSlideBox.getTranslateX()) == -(vUserSlideBox.getWidth())) {
+            buttonUser.getStyleClass().remove("side-button");
+            buttonUser.getStyleClass().add("sidebar-button-active");
             openNav.play();
-        }
-            else {
-                userSlideBarHide();
+        } else {
+            userSlideBarHide();
         }
     }
 }
