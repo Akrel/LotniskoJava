@@ -2,8 +2,9 @@ package com.example.mainserverpackage;
 
 import java.net.*;
 import java.io.*;
+import java.util.Date;
 
-public class AirportControlServer {
+public class AirportControlServer  implements Serializable {
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private PrintWriter out;
@@ -14,7 +15,12 @@ public class AirportControlServer {
         clientSocket = serverSocket.accept();
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+        ListFlightResponse object1 = new ListFlightResponse();
+        Flights object2 = new Flights(1,5);
+        object1.insetToList(object2);
 
+        objectOutputStream.writeObject(object1);
         String greeting = in.readLine();
         if ("hello server".equals(greeting)) {
             out.println("hello client");
@@ -22,6 +28,7 @@ public class AirportControlServer {
             out.println("greeting");
         }
 
+        System.out.println("Serwer" + greeting);
     }
 
     public void stop() throws IOException {

@@ -1,22 +1,38 @@
 package com.example.mainserverpackage;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Flights {
+public class Flights  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
     private Date data_wylotu;
     private Date date_przylotu;
+    private int cena;
+
+    public Flights(int fId,int cena) {
+
+        this.id = fId;
+        this.cena = cena;
+    }
+
+    public Flights() {
+    }
+
+    ;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "destination")
     private Airport destination;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orgin")
+
+
     private Airport orgin;
+
 
     public Date getData_wylotu() {
         return data_wylotu;
@@ -43,5 +59,11 @@ public class Flights {
         this.id = id;
     }
 
+    public void showData() {
+
+        System.out.println(id);
+        System.out.println(cena);
+
+    }
 
 }

@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class MainServer {
+
+
     public static void main(String[] args) {
         SpringApplication.run(MainServer.class, args);
     }
@@ -27,7 +29,8 @@ public class MainServer {
             for (String beanName : beanNames) {
                 System.out.println(beanName);
             }
-
+            AirportControlServer server = new AirportControlServer();
+            server.start(6666);
         };
     }
 
