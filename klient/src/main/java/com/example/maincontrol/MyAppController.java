@@ -5,42 +5,79 @@ import javafx.event.ActionEvent;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+@Controller
 @Component
-public class MyAppController implements Initializable {
-    public VBox vUserSlideBox;
+public class MyAppController implements Initializable, InitializingBean {
 
+    public VBox vUserSlideBox;
+    @FXML
+    private AnchorPane mainScene;
     private TranslateTransition openNav;
     private TranslateTransition closeNav;
     private TranslateTransition closeFastNav;
-    double x, y;
+    double SceneX, SceneY;
     public JFXButton buttonUser;
-    private TranslateTransition openNav2;
+    public JFXButton buttonFlight;
 
+    private boolean initialized = false;
+
+    @Autowired
+    SpringFxmlLoader springFxmlLoader;
+
+    public void hideAllSliderMenu() {
+        userSlideBarHide();
+    }
+
+    @FXML
+    public void u1(MouseEvent event) throws IOException {
+        loadUi("/userLogin");
+        hideAllSliderMenu();
+    }
+
+    @FXML
+    void goFlights(ActionEvent event) throws IOException {
+        loadUi("/searchFlights");
+        hideAllSliderMenu();
+    }
+
+    @FXML
+    void goCreateAccount(MouseEvent event) {
+        loadUi("/userRegister");
+        hideAllSliderMenu();
+    }
 
     @FXML
     void pressed(MouseEvent event) {
-        x = event.getSceneX();
-        y = event.getSceneY();
+        SceneX = event.getSceneX();
+        SceneY = event.getSceneY();
     }
 
     @FXML
     void draged(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setX(event.getScreenX() - x);
-        stage.setY(event.getScreenY() - y);
+        stage.setX(event.getScreenX() - SceneX);
+        stage.setY(event.getScreenY() - SceneY);
     }
 
 
@@ -48,11 +85,7 @@ public class MyAppController implements Initializable {
     void max(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setFullScreenExitHint(" ");
-        if (stage.isFullScreen()) {
-            stage.setFullScreen(false);
-        } else {
-            stage.setFullScreen(true);
-        }
+        stage.setFullScreen(!stage.isFullScreen());
     }
 
     @FXML
@@ -69,7 +102,7 @@ public class MyAppController implements Initializable {
     }
 
 
-    @Override
+    @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
         openNav = new TranslateTransition(Duration.millis(100), vUserSlideBox);
@@ -92,10 +125,6 @@ public class MyAppController implements Initializable {
         });
     }
 
-    public void hideAllSliderMenu() {
-        userSlideBarHide();
-    }
-
 
     public void userSlideBarHide() {
         buttonUser.getStyleClass().remove("side-button-active");
@@ -105,6 +134,7 @@ public class MyAppController implements Initializable {
 
     }
 
+
     public void buttonUserHover() {
         if ((vUserSlideBox.getTranslateX()) == -(vUserSlideBox.getWidth())) {
             buttonUser.getStyleClass().remove("side-button");
@@ -113,5 +143,22 @@ public class MyAppController implements Initializable {
         } else {
             userSlideBarHide();
         }
+    }
+
+    private void loadUi(String ui) {
+        AnchorPane root = (AnchorPane) springFxmlLoader.load(ui + ".fxml");
+        AnchorPane.setRightAnchor(root, 50d);
+        mainScene.getChildren().add(root);
+    }
+
+    public AnchorPane getMainScene() {
+        return mainScene;
+    }
+
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("1234567890");
+        initialized = true;
     }
 }

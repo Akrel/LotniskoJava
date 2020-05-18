@@ -9,109 +9,101 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="700.0" prefWidth="900.0"
-            stylesheets="@sampleCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.maincontrol.MyAppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="700.0" prefWidth="900.0" stylesheets="@sampleCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.MyAppController">
     <children>
-        <AnchorPane layoutX="137.0" layoutY="30.0" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="670.0"
-                    prefWidth="760.0" style="-fx-background-color: #E1F7FA;" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+        <AnchorPane fx:id="mainScene" layoutX="140.0" layoutY="30.0" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="670.0" prefWidth="760.0" style="-fx-background-color: #E1F7FA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
             <children>
-                <VBox fx:id="vUserSlideBox" alignment="TOP_CENTER" prefHeight="670.0" prefWidth="170.0"
-                      style="-fx-background-color: #74bae8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                      AnchorPane.topAnchor="0.0">
+                <VBox fx:id="vUserSlideBox" alignment="TOP_CENTER" onMouseClicked="#u1" prefHeight="670.0" prefWidth="170.0" style="-fx-background-color: #74bae8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <JFXButton prefHeight="50.0" prefWidth="170.0">
+                        <JFXButton onMouseClicked="#u1" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #5aa6d6;" text="LOGIN" textFill="#322d2d">
                             <VBox.margin>
-                                <Insets top="80.0"/>
+                                <Insets bottom="2.0" top="101.0" />
                             </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
                         </JFXButton>
-                        <JFXButton prefHeight="50.0" prefWidth="170.0"/>
-                        <JFXButton prefHeight="50.0" prefWidth="170.0"/>
-                        <JFXButton prefHeight="50.0" prefWidth="170.0"/>
+                        <JFXButton onMouseClicked="#goCreateAccount" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #5aa6d6;" text="CREATE ACCOUNT">
+                     <VBox.margin>
+                        <Insets bottom="2.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Gadugi Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
                     </children>
                 </VBox>
             </children>
         </AnchorPane>
-        <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="900.0" style="-fx-background-color: #00284B;"
-              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="900.0" style="-fx-background-color: #00284B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <FontAwesomeIcon fill="WHITE" glyphName="MINUS" onMouseClicked="#min" size="1.3em">
                     <HBox.margin>
-                        <Insets left="5.0" right="5.0" top="13.0"/>
+                        <Insets left="5.0" right="5.0" top="13.0" />
                     </HBox.margin>
                 </FontAwesomeIcon>
                 <FontAwesomeIcon fill="WHITE" glyphName="SQUARE_ALT" onMouseClicked="#max" size="1.3em">
                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
                 </FontAwesomeIcon>
                 <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" onMouseClicked="#close" size="1.3em" text="">
                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
                 </FontAwesomeIcon>
             </children>
         </HBox>
-        <VBox id="vb-sidebar" alignment="TOP_CENTER" layoutY="30.0" prefHeight="670.0" prefWidth="140.0"
-              style="-fx-background-color: #0a5991;" styleClass="slider-fxbutton" AnchorPane.bottomAnchor="0.0"
-              AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+        <VBox id="vb-sidebar" alignment="TOP_CENTER" layoutY="30.0" prefHeight="670.0" prefWidth="140.0" style="-fx-background-color: #0a5991;" styleClass="slider-fxbutton" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
             <children>
-                <JFXButton id="user_button" fx:id="buttonUser" alignment="CENTER" prefHeight="75.0" prefWidth="160.0"
-                           styleClass="sidebar-button" text="USER" textFill="WHITE">
+                <JFXButton id="user_button" fx:id="buttonUser" alignment="CENTER" prefHeight="75.0" prefWidth="160.0" styleClass="sidebar-button" text="USER" textFill="WHITE">
                     <graphic>
-                        <FontAwesomeIcon fx:id="UserControl" fill="WHITE" glyphName="USER" size="60"
-                                         styleClass="glyphIcon" wrappingWidth="55.0"/>
+                        <FontAwesomeIcon fx:id="UserControl" fill="WHITE" glyphName="USER" size="60" styleClass="glyphIcon" wrappingWidth="55.0" />
                     </graphic>
                     <VBox.margin>
-                        <Insets top="50.0"/>
+                        <Insets top="50.0" />
                     </VBox.margin>
                     <font>
-                        <Font name="System Bold" size="16.0"/>
+                        <Font name="System Bold" size="16.0" />
                     </font>
                     <padding>
-                        <Insets bottom="5.0" right="35.0" top="5.0"/>
+                        <Insets bottom="5.0" right="35.0" top="5.0" />
                     </padding>
                 </JFXButton>
-                <JFXButton alignment="CENTER" prefHeight="75.0" prefWidth="160.0" styleClass="sidebar-button"
-                           text="FLIGHTS" textFill="WHITE">
+                <JFXButton alignment="CENTER" onAction="#goFlights" prefHeight="75.0" prefWidth="160.0" styleClass="sidebar-button" text="FLIGHTS" textFill="WHITE">
                     <graphic>
-                        <FontAwesomeIcon id="flights_button" fx:id="FlightControl" fill="WHITE" glyphName="PLANE"
-                                         size="60" styleClass="glyphIcon" wrappingWidth="55.0">
+                        <FontAwesomeIcon id="flights_button" fx:id="FlightControl" fill="WHITE" glyphName="PLANE" size="60" styleClass="glyphIcon" wrappingWidth="55.0">
                             <cursor>
-                                <Cursor fx:constant="CROSSHAIR"/>
+                                <Cursor fx:constant="CROSSHAIR" />
                             </cursor>
                         </FontAwesomeIcon>
                     </graphic>
                     <font>
-                        <Font name="System Bold" size="16.0"/>
+                        <Font name="System Bold" size="16.0" />
                     </font>
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                     <padding>
-                        <Insets bottom="5.0" right="12.0" top="5.0"/>
+                        <Insets bottom="5.0" right="12.0" top="5.0" />
                     </padding>
                 </JFXButton>
-                <JFXButton id="agent_button" alignment="CENTER" prefHeight="75.0" prefWidth="160.0"
-                           styleClass="sidebar-button" text="AGENT" textFill="WHITE">
+                <JFXButton id="agent_button" alignment="CENTER" prefHeight="75.0" prefWidth="160.0" styleClass="sidebar-button" text="AGENT" textFill="WHITE">
                     <graphic>
-                        <FontAwesomeIcon fx:id="AgentControl" fill="WHITE" glyphName="USER_SECRET" size="60"
-                                         styleClass="glyphIcon" wrappingWidth="55.0">
+                        <FontAwesomeIcon fx:id="AgentControl" fill="WHITE" glyphName="USER_SECRET" size="60" styleClass="glyphIcon" wrappingWidth="55.0">
                             <cursor>
-                                <Cursor fx:constant="DEFAULT"/>
+                                <Cursor fx:constant="DEFAULT" />
                             </cursor>
                         </FontAwesomeIcon>
                     </graphic>
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                     <padding>
-                        <Insets bottom="5.0" right="20.0" top="5.0"/>
+                        <Insets bottom="5.0" right="20.0" top="5.0" />
                     </padding>
                     <font>
-                        <Font name="System Bold" size="16.0"/>
+                        <Font name="System Bold" size="16.0" />
                     </font>
                 </JFXButton>
             </children>

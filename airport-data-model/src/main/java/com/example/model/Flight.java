@@ -1,11 +1,11 @@
-package com.example.mainserverpackage;
+package com.example.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Flights  implements Serializable {
+public class Flight implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -13,25 +13,24 @@ public class Flights  implements Serializable {
     private Date date_przylotu;
     private int cena;
 
-    public Flights(int fId,int cena) {
+    public Flight(int fId, int cena) {
 
         this.id = fId;
         this.cena = cena;
     }
 
-    public Flights() {
+    public Flight() {
     }
 
     ;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "destination")
+    @ManyToOne
+    @JoinColumn(name = "destination", referencedColumnName = "code")
     private Airport destination;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orgin")
 
-
-    private Airport orgin;
+    @ManyToOne
+    @JoinColumn(name = "origin", referencedColumnName = "code")
+    private Airport origin;
 
 
     public Date getData_wylotu() {

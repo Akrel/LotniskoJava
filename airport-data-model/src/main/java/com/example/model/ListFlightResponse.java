@@ -1,32 +1,33 @@
-package com.example.mainserverpackage;
+package com.example.model;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListFlightResponse implements Serializable {
 
-    private ArrayList<Flights> listOfFlights;
+    private ArrayList<Flight> listOfFlights;
 
     public ListFlightResponse()
     {
         listOfFlights = new ArrayList<>();
     }
 
-    public List<Flights> getListOfFlights() {
+    public List<Flight> getListOfFlights() {
         return listOfFlights;
     }
 
 
 
 
-    public void insetToList(Flights obiekt)
+    public void insetToList(Flight obiekt)
     {
         listOfFlights.add(obiekt);
     }
 
-    public Flights returnAirport()
+    public Flight returnAirport()
     {
-        Flights test = this.listOfFlights.get(0);
+        Flight test = this.listOfFlights.get(0);
         return test;
 
     }

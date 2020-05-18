@@ -4,66 +4,57 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-
-
+@Configuration
 @SpringBootApplication
 public class MyApp extends Application {
+
     private ConfigurableApplicationContext springContext;
     private Parent rootNode;
-    private FXMLLoader fxmlLoader;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
-    public void init() throws Exception {
+    public void init() throws IOException {
         springContext = SpringApplication.run(MyApp.class);
-        fxmlLoader = new FXMLLoader();
+        FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(springContext::getBean);
+        fxmlLoader.setLocation((getClass().getResource("/sample.fxml")));
+        rootNode = fxmlLoader.load();
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        fxmlLoader.setLocation((getClass().getResource("/sample.fxml")));
-        rootNode = fxmlLoader.load();
 
-        // primaryStage.setTitle("hello World");
-        primaryStage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(rootNode, 800, 600);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        // COMMUNICATION TEST
+//        ClientControl client = new ClientControl();
+//        client.startConnection("127.0.0.1", 6666);
+//        String response = client.sendMessage("hello server\n");
+//        System.out.println("OMG " + response);
+        // TO BE REMOVED
+
     }
 
-    public static void showMenuAirport() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MyApp.class.getResource("/sample.fxml"));
-        AnchorPane menuAir = loader.load();
-    }
-
-
-    @Test
-    public void givenGreetingClient_whenServerRespondsWhenStarted_thenCorrect() throws IOException {
-        ClientControl client = new ClientControl();
-        client.startConnection("127.0.0.1", 6666);
-        String response = client.sendMessage("hello server");
-        assertEquals("hello client", response);
-    }
 
     @Override
     public void stop() {
         springContext.stop();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 
 }

@@ -1,39 +1,46 @@
-package com.example.mainserverpackage;
+package com.example.model;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Airport implements Serializable {
+
     @Id
-    @Column(name = "KOD_LOTN", nullable = false)
-    private String kod_lotniska;
+    private String code;
+
     private String kraj;
+
     private String miasto;
+
+    @OneToMany(mappedBy = "destination")
+    private Set<Flight> flightsTo;
+
+    @OneToMany(mappedBy = "origin")
+    private Set<Flight> flightsFrom;
 
     public Airport() {
     }
 
 
     public Airport(String cod_ap, String country, String city) {
-        this.kod_lotniska = cod_ap;
+        this.code = cod_ap;
         this.kraj = country;
         this.miasto = city;
     }
 
 
-    @OneToMany(mappedBy = "destination")
-    private Set<Flights> flights;
-    @OneToMany(mappedBy = "orgin")
-    private Set<Flights> flightsOrg;
+
 
     public String getKod_lotniska() {
-        return kod_lotniska;
+        return code;
     }
 
     public void setKod_lotniska(String kod_lotniska) {
-        this.kod_lotniska = kod_lotniska;
+        this.code = kod_lotniska;
     }
 
     public String getKraj() {
@@ -45,7 +52,7 @@ public class Airport implements Serializable {
     }
 
     public void showDetalis() {
-        System.out.println(this.kod_lotniska);
+        System.out.println(this.code);
         System.out.println(this.kraj);
         System.out.println(this.miasto);
     }

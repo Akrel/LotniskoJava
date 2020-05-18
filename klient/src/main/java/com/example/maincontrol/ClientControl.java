@@ -1,6 +1,9 @@
 package com.example.maincontrol;
 
 
+import com.example.model.Flight;
+import com.example.model.ListFlightResponse;
+
 import java.net.*;
 import java.io.*;
 
@@ -8,12 +11,20 @@ public class ClientControl {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
+    public ListFlightResponse airport;
 
-    public void startConnection(String ip, int port) throws IOException {
+    public void startConnection(String ip, int port) throws IOException, ClassNotFoundException {
         clientSocket = new Socket(ip, port);
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-    }
+        
+        ObjectInputStream objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
+        airport = (ListFlightResponse) objectInputStream.readObject();
+        Flight obj = airport.returnAirport();
+        obj.showData();
+
+
+            }
 
     public String sendMessage(String msg) throws IOException {
         out.println(msg);

@@ -1,8 +1,10 @@
 package com.example.mainserverpackage;
 
+import com.example.model.Flight;
+import com.example.model.ListFlightResponse;
+
 import java.net.*;
 import java.io.*;
-import java.util.Date;
 
 public class AirportControlServer  implements Serializable {
     private ServerSocket serverSocket;
@@ -17,7 +19,7 @@ public class AirportControlServer  implements Serializable {
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
         ListFlightResponse object1 = new ListFlightResponse();
-        Flights object2 = new Flights(1,5);
+        Flight object2 = new Flight(1,5);
         object1.insetToList(object2);
 
         objectOutputStream.writeObject(object1);
