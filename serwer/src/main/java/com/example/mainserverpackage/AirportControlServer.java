@@ -1,36 +1,47 @@
 package com.example.mainserverpackage;
 
 import com.example.model.Flight;
+import com.example.model.ListFlightRequest;
 import com.example.model.ListFlightResponse;
 
-import java.net.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-public class AirportControlServer  implements Serializable {
+public class AirportControlServer implements Serializable {
     private ServerSocket serverSocket;
     private Socket clientSocket;
-    private PrintWriter out;
-    private BufferedReader in;
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
 
-    public void start(int port) throws IOException {
+    public void start(int port, FlightRepository flightRepository) throws IOException, ClassNotFoundException {
         serverSocket = new ServerSocket(port);
-        clientSocket = serverSocket.accept();
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-        ListFlightResponse object1 = new ListFlightResponse();
-        Flight object2 = new Flight(1,5);
-        object1.insetToList(object2);
 
-        objectOutputStream.writeObject(object1);
-        String greeting = in.readLine();
-        if ("hello server".equals(greeting)) {
-            out.println("hello client");
-        } else {
-            out.println("greeting");
+        while (true) {
+            clientSocket = serverSocket.accept();
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
+            in = new ObjectInputStream((clientSocket.getInputStream()));
+
+            Object request = in.readObject();
+
+
+            if (request instanceof ListFlightRequest) {
+                ListFlightRequest listFlightRequest = (ListFlightRequest) request;
+                Iterable<Flight> all = flightRepository.findAll();
+                ListFlightResponse flightResponse = new ListFlightResponse();
+                for (Flight flight : all) {
+                    flightResponse.insetToList(flight);
+
+                }
+                out.writeObject(flightResponse);
+
+            }
+
+
         }
-
-        System.out.println("Serwer" + greeting);
     }
 
     public void stop() throws IOException {
@@ -40,10 +51,6 @@ public class AirportControlServer  implements Serializable {
         serverSocket.close();
     }
 
-    public static void main(String[] args) throws IOException {
-        AirportControlServer server = new AirportControlServer();
-        server.start(6666);
-    }
 
 
 }

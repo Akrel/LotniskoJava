@@ -13,6 +13,7 @@
     <children>
         <AnchorPane fx:id="mainScene" layoutX="140.0" layoutY="30.0" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="670.0" prefWidth="760.0" style="-fx-background-color: #E1F7FA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
             <children>
+            <AnchorPane fx:id="mainLoad" layoutX="24.0" layoutY="23.0" prefHeight="620.0" prefWidth="710.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
                 <VBox fx:id="vUserSlideBox" alignment="TOP_CENTER" onMouseClicked="#u1" prefHeight="670.0" prefWidth="170.0" style="-fx-background-color: #74bae8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <JFXButton onMouseClicked="#u1" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #5aa6d6;" text="LOGIN" textFill="#322d2d">
@@ -40,11 +41,6 @@
                 <FontAwesomeIcon fill="WHITE" glyphName="MINUS" onMouseClicked="#min" size="1.3em">
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" top="13.0" />
-                    </HBox.margin>
-                </FontAwesomeIcon>
-                <FontAwesomeIcon fill="WHITE" glyphName="SQUARE_ALT" onMouseClicked="#max" size="1.3em">
-                    <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
                 </FontAwesomeIcon>
                 <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" onMouseClicked="#close" size="1.3em" text="">
@@ -87,24 +83,6 @@
                     <padding>
                         <Insets bottom="5.0" right="12.0" top="5.0" />
                     </padding>
-                </JFXButton>
-                <JFXButton id="agent_button" alignment="CENTER" prefHeight="75.0" prefWidth="160.0" styleClass="sidebar-button" text="AGENT" textFill="WHITE">
-                    <graphic>
-                        <FontAwesomeIcon fx:id="AgentControl" fill="WHITE" glyphName="USER_SECRET" size="60" styleClass="glyphIcon" wrappingWidth="55.0">
-                            <cursor>
-                                <Cursor fx:constant="DEFAULT" />
-                            </cursor>
-                        </FontAwesomeIcon>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                    <padding>
-                        <Insets bottom="5.0" right="20.0" top="5.0" />
-                    </padding>
-                    <font>
-                        <Font name="System Bold" size="16.0" />
-                    </font>
                 </JFXButton>
             </children>
         </VBox>

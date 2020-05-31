@@ -39,7 +39,7 @@ public class MyAppController implements Initializable, InitializingBean {
     double SceneX, SceneY;
     public JFXButton buttonUser;
     public JFXButton buttonFlight;
-
+    public AnchorPane mainLoad;
     private boolean initialized = false;
 
     @Autowired
@@ -51,19 +51,38 @@ public class MyAppController implements Initializable, InitializingBean {
 
     @FXML
     public void u1(MouseEvent event) throws IOException {
-        loadUi("/userLogin");
+        if(!mainLoad.getChildren().isEmpty()){
+            mainLoad.getChildren().clear();
+        }
+        AnchorPane root = loadUi("/userLogin");
+        mainLoad.getChildren().add(root);
         hideAllSliderMenu();
     }
 
     @FXML
     void goFlights(ActionEvent event) throws IOException {
-        loadUi("/searchFlights");
+
+        if(!mainLoad.getChildren().isEmpty()){
+            mainLoad.getChildren().clear();
+        }
+        AnchorPane root = loadUi("/searchFlights");
+        AnchorPane.setLeftAnchor(root,110d);
+        AnchorPane.setRightAnchor(root,100d);
+        mainLoad.getChildren().add(root);
         hideAllSliderMenu();
     }
 
     @FXML
     void goCreateAccount(MouseEvent event) {
-        loadUi("/userRegister");
+        if(!mainLoad.getChildren().isEmpty()){
+            mainLoad.getChildren().clear();
+        }
+        AnchorPane root = loadUi("/userRegister");
+        AnchorPane.setLeftAnchor(root,220d);
+        AnchorPane.setRightAnchor(root,230d);
+        AnchorPane.setTopAnchor(root,30d);
+        AnchorPane.setBottomAnchor(root,30d);
+        mainLoad.getChildren().add(root);
         hideAllSliderMenu();
     }
 
@@ -145,10 +164,9 @@ public class MyAppController implements Initializable, InitializingBean {
         }
     }
 
-    private void loadUi(String ui) {
+    private AnchorPane loadUi(String ui) {
         AnchorPane root = (AnchorPane) springFxmlLoader.load(ui + ".fxml");
-        AnchorPane.setRightAnchor(root, 50d);
-        mainScene.getChildren().add(root);
+        return root;
     }
 
     public AnchorPane getMainScene() {

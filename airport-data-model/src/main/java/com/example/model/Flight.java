@@ -12,11 +12,13 @@ public class Flight implements Serializable {
     private Date data_wylotu;
     private Date date_przylotu;
     private int cena;
+    private int ilosc_miejsc;
 
-    public Flight(int fId, int cena) {
+    public Flight(int fId, int cena, int ilosc_miejsc) {
 
         this.id = fId;
         this.cena = cena;
+        this.ilosc_miejsc = ilosc_miejsc;
     }
 
     public Flight() {
@@ -65,4 +67,11 @@ public class Flight implements Serializable {
 
     }
 
+    public int getIlosc_miejsc() {
+        return ilosc_miejsc;
+    }
+
+    public void setIlosc_miejsc(int ilosc_miejsc) {
+        this.ilosc_miejsc = ilosc_miejsc;
+    }
 }

@@ -36,17 +36,17 @@ public class MyApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Scene scene = new Scene(rootNode, 800, 600);
+        Scene scene = new Scene(rootNode, 1024, 768);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene();
         primaryStage.show();
 
-        // COMMUNICATION TEST
-//        ClientControl client = new ClientControl();
-//        client.startConnection("127.0.0.1", 6666);
-//        String response = client.sendMessage("hello server\n");
-//        System.out.println("OMG " + response);
-        // TO BE REMOVED
+
+        ClientControl client = new ClientControl();
+        client.startConnection("127.0.0.1", 6666);
+
 
     }
 

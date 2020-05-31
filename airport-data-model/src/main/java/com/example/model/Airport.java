@@ -1,6 +1,7 @@
 package com.example.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
@@ -16,10 +17,10 @@ public class Airport implements Serializable {
 
     private String miasto;
 
-    @OneToMany(mappedBy = "destination")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "destination")
     private Set<Flight> flightsTo;
 
-    @OneToMany(mappedBy = "origin")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "origin")
     private Set<Flight> flightsFrom;
 
     public Airport() {
