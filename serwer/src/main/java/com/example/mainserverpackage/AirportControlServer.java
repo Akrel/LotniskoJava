@@ -37,7 +37,9 @@ public class AirportControlServer implements Serializable {
 
                 }
                 out.writeObject(flightResponse);
-
+//                out.close();
+//                in.close();
+//                clientSocket.close();
             }
 
 
