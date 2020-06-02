@@ -29,7 +29,7 @@ public class ClientControl {
         for (Flight flight : flightIterable) {
             System.out.println(flight.getId());
         }
-
+        stopConnection();
 
 
     }

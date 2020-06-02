@@ -14,17 +14,13 @@ public class Flight implements Serializable {
     private int cena;
     private int ilosc_miejsc;
 
-    public Flight(int fId, int cena, int ilosc_miejsc) {
-
-        this.id = fId;
+    public Flight(int id,int cena, int ilosc_miejsc) {
         this.cena = cena;
+        this.id = id;
         this.ilosc_miejsc = ilosc_miejsc;
     }
 
-    public Flight() {
-    }
 
-    ;
 
     @ManyToOne
     @JoinColumn(name = "destination", referencedColumnName = "code")

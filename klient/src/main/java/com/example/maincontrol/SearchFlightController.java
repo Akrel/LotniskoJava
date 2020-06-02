@@ -1,17 +1,11 @@
 package com.example.maincontrol;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Controller
 @Component
@@ -25,21 +19,21 @@ public class SearchFlightController implements InitializingBean {
 
     public JFXButton buttonUser;
 
-    private void loadUi(String ui) {
-        AnchorPane root = null;
 
-        root = (AnchorPane) springFxmlLoader.load(ui + ".fxml");
-
-
-        AnchorPane.setRightAnchor(root, 50d);
-
-        myAppController.getMainScene().getChildren().add(root);
-
+    private AnchorPane loadUi(String ui) {
+        AnchorPane root = (AnchorPane) springFxmlLoader.load(ui + ".fxml");
+        return root;
     }
 
     public void searchButton(javafx.event.ActionEvent actionEvent) {
-        loadUi("/tableFlights");
+        if(!myAppController.getMainLoad().getChildren().isEmpty()){
+            myAppController.getMainLoad().getChildren().clear();
+        }
+        AnchorPane root = loadUi("/tableFlights");
+        AnchorPane.setRightAnchor(root, 50d);
+        myAppController.getMainLoad().getChildren().add(root);
     }
+
 
     @Override
     public void afterPropertiesSet() throws Exception {

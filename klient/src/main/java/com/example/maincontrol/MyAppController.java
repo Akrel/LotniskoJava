@@ -172,7 +172,10 @@ public class MyAppController implements Initializable, InitializingBean {
     public AnchorPane getMainScene() {
         return mainScene;
     }
-
+    public AnchorPane getMainLoad()
+    {
+        return mainLoad;
+    }
 
     @Override
     public void afterPropertiesSet() throws Exception {

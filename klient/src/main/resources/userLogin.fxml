@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="572.0" maxWidth="487.0" prefHeight="500.0" prefWidth="480.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="100d" AnchorPane.leftAnchor="170d" AnchorPane.rightAnchor="170d" AnchorPane.topAnchor="100d" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.UserLoginController">
+<AnchorPane prefWidth="480.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="100d" AnchorPane.leftAnchor="170d" AnchorPane.rightAnchor="170d" AnchorPane.topAnchor="100d" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.UserLoginController">
     <children>
-        <VBox layoutX="200.0" layoutY="77.0" prefHeight="529.0" prefWidth="480.0" style="-fx-background-color: #0a5991;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox layoutX="200.0" layoutY="77.0" prefHeight="480.0" prefWidth="480.0" style="-fx-background-color: #0a5991;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Label prefHeight="80.0" prefWidth="537.0" style="-fx-background-color: #11437d;" text="LOGIN" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
@@ -51,12 +51,12 @@
             </Label>
                 <JFXPasswordField fx:id="logPassw" prefHeight="35.0" prefWidth="220.0" promptText="Password" style="-fx-background-color: white;" unFocusColor="BLACK" VBox.vgrow="ALWAYS">
                     <VBox.margin>
-                        <Insets left="70.0" right="70.0" />
+                        <Insets left="90.0" right="70.0" />
                     </VBox.margin>
                 </JFXPasswordField>
                 <JFXButton onMouseClicked="#logButton" prefHeight="80.0" prefWidth="170.0" style="-fx-background-color: #05b61a;" text="ZALOGUJ" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <VBox.margin>
-                        <Insets bottom="60.0" left="154.0" right="120.0" top="100.0" />
+                        <Insets bottom="20.0" left="154.0" right="120.0" top="100.0" />
                     </VBox.margin>
                     <font>
                         <Font name="System Bold" size="18.0" />

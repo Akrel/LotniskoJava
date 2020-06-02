@@ -1,18 +1,28 @@
 package com.example.maincontrol;
 
+import com.example.model.User;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-import java.awt.event.MouseEvent;
+@Controller
+@Component
+public class UserRegisterController implements InitializingBean {
+    @Autowired
+    MyAppController myAppController;
 
-public class UserRegisterController {
+    @Autowired
+    SpringFxmlLoader springFxmlLoader;
     @FXML
     private JFXTextField filedName;
     @FXML
-    private JFXTextField fieldSuname;
+    private JFXTextField fieldSurname;
     @FXML
     private JFXTextField fieldEmail;
     @FXML
@@ -57,8 +67,8 @@ public class UserRegisterController {
         return fieldPhone;
     }
 
-    public JFXTextField getFieldSuname() {
-        return fieldSuname;
+    public JFXTextField getFieldSurname() {
+        return fieldSurname;
     }
 
     public JFXTextField getFiledName() {
@@ -66,15 +76,34 @@ public class UserRegisterController {
     }
 
 
-    @FXML
-    void clickCancel(MouseEvent event) {
+    @Override
+    public void afterPropertiesSet() throws Exception {
 
     }
 
-    @FXML
-    void clickCreateAccount(MouseEvent event) {
-        
+    public void clickCreateAccount(javafx.scene.input.MouseEvent mouseEvent) {
+
+        String name = getFiledName().toString();
+        String surname = getFieldSurname().toString();
+        String email = getFieldEmail().toString();
+        String phone = getFieldPhone().toString();
+        String password = getFieldPassword().toString();
+        String rePassw = getFieldRePass().toString();
+
+        if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
+            System.out.println("Zle uzupelniono");
+        } else {
+                if (!rePassw.equals(password))
+                {
+                    System.out.println("Zle haslo");
+                }
+                else {
+                    User nowy = new User(name,surname,email,phone,password);
+                }
+        }
+
     }
 
-
+    public void clickCancel(javafx.scene.input.MouseEvent mouseEvent) {
+    }
 }

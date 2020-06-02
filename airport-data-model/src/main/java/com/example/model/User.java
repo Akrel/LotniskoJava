@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity(name = "Userek") // This tells Hibernate to make a table out of this class
 public class User {
+    static int tempId = 0;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -21,6 +22,14 @@ public class User {
 
     private String password;
 
+public User(){};
+    public User(String name,String surname,String email,String phone,String password){
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
 
 
     public int getId() {

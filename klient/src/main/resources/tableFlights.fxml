@@ -6,24 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="670.0" prefWidth="760.0" style="-fx-background-color: #E1F7FA;"
-            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="670.0" prefWidth="760.0" style="-fx-background-color: #E1F7FA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.TableFlights">
     <children>
-        <TableView layoutX="39.0" layoutY="27.0" prefHeight="292.0" prefWidth="700.0" AnchorPane.leftAnchor="30.0"
-                   AnchorPane.rightAnchor="30.0">
+        <TableView fx:id="tableView" layoutX="39.0" layoutY="27.0" prefHeight="292.0" prefWidth="700.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
             <columns>
-                <TableColumn minWidth="140.0" prefWidth="107.0" text="FROM"/>
-                <TableColumn minWidth="140.0" prefWidth="112.0" text="TO"/>
-                <TableColumn minWidth="140.0" prefWidth="75.0" text="DATE"/>
-                <TableColumn minWidth="140.0" prefWidth="75.0" text="TIME"/>
-                <TableColumn minWidth="140.0" prefWidth="103.0" text="PRICE"/>
+                <TableColumn fx:id="name" minWidth="140.0" prefWidth="107.0" text="FROM" />
+                <TableColumn fx:id="surname" minWidth="140.0" prefWidth="112.0" text="TO" />
+                <TableColumn fx:id="email" minWidth="140.0" prefWidth="75.0" text="DATE" />
+                <TableColumn fx:id="phone" minWidth="140.0" prefWidth="75.0" text="TIME" />
+                <TableColumn fx:id="password" minWidth="140.0" prefWidth="103.0" text="PRICE" />
             </columns>
         </TableView>
-        <JFXButton layoutX="530.0" layoutY="575.0" prefHeight="70.0" prefWidth="187.0"
-                   style="-fx-background-color: green;" text="PAY" textFill="WHITE">
+        <JFXButton layoutX="530.0" layoutY="575.0" onMouseClicked="#bookButton" prefHeight="70.0" prefWidth="187.0" style="-fx-background-color: green;" text="BOOK" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="24.0"/>
+                <Font name="System Bold" size="24.0" />
             </font>
         </JFXButton>
     </children>
