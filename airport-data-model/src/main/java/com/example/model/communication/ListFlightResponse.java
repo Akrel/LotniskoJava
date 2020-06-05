@@ -1,4 +1,6 @@
-package com.example.model;
+package com.example.model.communication;
+
+import com.example.model.database.Flight;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,8 +10,7 @@ public class ListFlightResponse<F> implements Serializable {
 
     private ArrayList<Flight> listOfFlights;
 
-    public ListFlightResponse()
-    {
+    public ListFlightResponse() {
         listOfFlights = new ArrayList<Flight>();
     }
 
@@ -18,15 +19,14 @@ public class ListFlightResponse<F> implements Serializable {
     }
 
 
-
-
-    public void insetToList(Flight obiekt)
-    {
+    public void insertToList(Flight obiekt) {
         listOfFlights.add(obiekt);
     }
 
-   public List<Flight> returnListFlight (){
+    public List<Flight> getListOfFlight() {
         return this.listOfFlights;
-    };
+    }
+
+    ;
 
 }

@@ -1,14 +1,11 @@
 package com.example.maincontrol;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
-
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,8 +20,6 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Controller
 @Component
@@ -51,7 +46,7 @@ public class MyAppController implements Initializable, InitializingBean {
 
     @FXML
     public void u1(MouseEvent event) throws IOException {
-        if(!mainLoad.getChildren().isEmpty()){
+        if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
         }
         AnchorPane root = loadUi("/userLogin");
@@ -62,26 +57,26 @@ public class MyAppController implements Initializable, InitializingBean {
     @FXML
     void goFlights(ActionEvent event) throws IOException {
 
-        if(!mainLoad.getChildren().isEmpty()){
+        if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
         }
         AnchorPane root = loadUi("/searchFlights");
-        AnchorPane.setLeftAnchor(root,110d);
-        AnchorPane.setRightAnchor(root,100d);
+        AnchorPane.setLeftAnchor(root, 110d);
+        AnchorPane.setRightAnchor(root, 100d);
         mainLoad.getChildren().add(root);
         hideAllSliderMenu();
     }
 
     @FXML
     void goCreateAccount(MouseEvent event) {
-        if(!mainLoad.getChildren().isEmpty()){
+        if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
         }
         AnchorPane root = loadUi("/userRegister");
-        AnchorPane.setLeftAnchor(root,220d);
-        AnchorPane.setRightAnchor(root,230d);
-        AnchorPane.setTopAnchor(root,30d);
-        AnchorPane.setBottomAnchor(root,30d);
+        AnchorPane.setLeftAnchor(root, 220d);
+        AnchorPane.setRightAnchor(root, 230d);
+        AnchorPane.setTopAnchor(root, 30d);
+        AnchorPane.setBottomAnchor(root, 30d);
         mainLoad.getChildren().add(root);
         hideAllSliderMenu();
     }
@@ -172,8 +167,8 @@ public class MyAppController implements Initializable, InitializingBean {
     public AnchorPane getMainScene() {
         return mainScene;
     }
-    public AnchorPane getMainLoad()
-    {
+
+    public AnchorPane getMainLoad() {
         return mainLoad;
     }
 

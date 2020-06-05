@@ -1,13 +1,15 @@
-package com.example.model;
+package com.example.model.database;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
+
 
 @Entity(name = "Userek") // This tells Hibernate to make a table out of this class
-public class User {
-    static int tempId = 0;
+public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

@@ -1,43 +1,72 @@
 package com.example.maincontrol;
 
-
-import com.example.model.Flight;
-import com.example.model.ListFlightRequest;
-import com.example.model.ListFlightResponse;
+import com.example.model.communication.ListFlightRequest;
+import com.example.model.communication.ListFlightResponse;
+import com.example.model.database.Flight;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+@Component
 public class ClientControl {
-    private Socket clientSocket;
-    private ObjectOutputStream out;
-    private ObjectInputStream in;
 
+    private final static String IP_ADDRESS = "127.0.0.1";
+    private final static int SERVER_PORT = 6666;
 
-    public void startConnection(String ip, int port) throws IOException, ClassNotFoundException {
-        clientSocket = new Socket(ip, port);
-        out = new ObjectOutputStream(clientSocket.getOutputStream());
-        in = new ObjectInputStream(clientSocket.getInputStream());
-        ListFlightRequest listFlightRequest = new ListFlightRequest();
-        out.writeObject(listFlightRequest);
-
-        ListFlightResponse listFlightResponse = new ListFlightResponse();
-        listFlightResponse = (ListFlightResponse) in.readObject();
-        Iterable<Flight> flightIterable = listFlightResponse.returnListFlight();
-        for (Flight flight : flightIterable) {
-            System.out.println(flight.getId());
+    public ListFlightResponse listFlights(ListFlightRequest request) {
+        ListFlightResponse listFlightResponse = (ListFlightResponse) send(request);
+        if (listFlightResponse != null) {
+            System.out.println("ListFlightResponse received!");
+            Iterable<Flight> flightIterable = listFlightResponse.getListOfFlight();
+            for (Flight flight : flightIterable) {
+                System.out.println(flight.getId());
+            }
         }
-        stopConnection();
 
-
+        return listFlightResponse;
     }
 
+    public Object send(Object request) {
+        Socket clientSocket = null;
+        ObjectOutputStream out = null;
+        ObjectInputStream in = null;
+        try {
+            clientSocket = new Socket(IP_ADDRESS, SERVER_PORT);
 
-    public void stopConnection() throws IOException {
-        in.close();
-        out.close();
-        clientSocket.close();
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
+            in = new ObjectInputStream(clientSocket.getInputStream());
+            out.writeObject(request);
+            return in.readObject();
+        } catch (IOException e) {
+            System.err.println("Error while communication with server - socket error");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.err.println("Error while communication with server - classes incompatible");
+            e.printStackTrace();
+        } finally {
+            closeConnection(clientSocket, out, in);
+        }
+
+        return null;
     }
+
+    private void closeConnection(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) {
+        try {
+            if (in != null) {
+                in.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+            if (clientSocket != null) {
+                clientSocket.close();
+            }
+        } catch (Exception e) {
+            System.err.println("Error while closing connection");
+        }
+    }
+
 }

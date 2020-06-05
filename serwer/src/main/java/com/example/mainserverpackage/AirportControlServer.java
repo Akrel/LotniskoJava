@@ -1,8 +1,8 @@
 package com.example.mainserverpackage;
 
-import com.example.model.Flight;
-import com.example.model.ListFlightRequest;
-import com.example.model.ListFlightResponse;
+import com.example.model.database.Flight;
+import com.example.model.communication.ListFlightRequest;
+import com.example.model.communication.ListFlightResponse;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -33,11 +33,13 @@ public class AirportControlServer implements Serializable {
                 Iterable<Flight> all = flightRepository.findAll();
                 ListFlightResponse flightResponse = new ListFlightResponse();
                 for (Flight flight : all) {
-                    flightResponse.insetToList(flight);
+                    flightResponse.insertToList(flight);
 
                 }
                 out.writeObject(flightResponse);
-
+//                out.close();
+//                in.close();
+//                clientSocket.close();
             }
 
 

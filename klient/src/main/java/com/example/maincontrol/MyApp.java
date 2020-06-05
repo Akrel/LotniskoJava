@@ -35,26 +35,17 @@ public class MyApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         Scene scene = new Scene(rootNode, 1024, 768);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();
         primaryStage.show();
-
-
-        ClientControl client = new ClientControl();
-        client.startConnection("127.0.0.1", 6666);
-
-
     }
-
 
     @Override
     public void stop() {
         springContext.stop();
     }
-
 
 }

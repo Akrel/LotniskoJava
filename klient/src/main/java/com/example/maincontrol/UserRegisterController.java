@@ -1,6 +1,6 @@
 package com.example.maincontrol;
 
-import com.example.model.User;
+import com.example.model.database.User;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
