@@ -6,22 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1025.0" style="-fx-background-color: #E1F7FA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.TableFlights">
+<AnchorPane prefHeight="473.0" prefWidth="850.0" style="-fx-background-color: #E1F7FA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.TableFlights">
     <children>
-        <TableView fx:id="tableView" layoutX="90.0" layoutY="55.0" prefHeight="292.0" prefWidth="881.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="54.0">
+        <TableView fx:id="tableView" layoutX="37.0" layoutY="28.0" prefHeight="292.0" prefWidth="833.0">
             <columns>
-                <TableColumn fx:id="name" minWidth="95.0" prefWidth="95.0" text="FROM" />
-                <TableColumn fx:id="surname" minWidth="78.0" text="TO" />
-                <TableColumn fx:id="email" minWidth="115.0" prefWidth="115.0" text="DATE" />
-                <TableColumn fx:id="phone" minWidth="90.0" prefWidth="90.0" text="TIME" />
-                <TableColumn fx:id="password" minWidth="125.0" prefWidth="125.0" text="PRICE" />
-            <TableColumn prefWidth="98.0" text="Column X" />
-            <TableColumn prefWidth="109.0" text="Column X" />
-            <TableColumn prefWidth="87.0" text="Column X" />
-            <TableColumn prefWidth="81.0" text="Column X" />
+                <TableColumn fx:id="countryColumn" maxWidth="150.0" minWidth="90.0" prefWidth="90.0" resizable="false" text="COUNTRY" />
+                <TableColumn fx:id="cityDestinationColumn" maxWidth="196.0" minWidth="78.0" prefWidth="120.0" resizable="false" text="CITY DESTINATION" />
+                <TableColumn fx:id="dateDepartureColumn" maxWidth="229.0" minWidth="107.0" prefWidth="129.0" resizable="false" text="DATE DEPARTURE" />
+                <TableColumn fx:id="countrySourceColumn" maxWidth="169.0" minWidth="90.0" prefWidth="118.0" resizable="false" text="COUNTRY SOURCE" />
+                <TableColumn fx:id="priceColumn" maxWidth="150.0" minWidth="61.0" prefWidth="69.0" resizable="false" text="PRICE" />
+            <TableColumn fx:id="numberSeatsColumn" prefWidth="96.0" resizable="false" text="NUMBER SEATS" />
+            <TableColumn fx:id="dateArrivalColumn" prefWidth="95.0" resizable="false" text="DATE ARRIVAL" />
+            <TableColumn fx:id="citySourceColumn" maxWidth="150.0" prefWidth="115.0" resizable="false" text="CITY SOURCE" />
             </columns>
         </TableView>
-        <JFXButton layoutX="530.0" layoutY="575.0" onMouseClicked="#bookButton" prefHeight="70.0" prefWidth="187.0" style="-fx-background-color: green;" text="BOOK" textFill="WHITE">
+        <JFXButton layoutX="676.0" layoutY="389.0" onMouseClicked="#bookButton" prefHeight="70.0" prefWidth="187.0" style="-fx-background-color: green;" text="BOOK" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>

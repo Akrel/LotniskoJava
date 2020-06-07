@@ -39,7 +39,7 @@ public class SearchFlightController implements InitializingBean {
 
         // stworz nowy widok, przekazujac mu wyszukana liste lotow
         AnchorPane root = loadUi("/tableFlights", listFlightResponse);
-        AnchorPane.setRightAnchor(root, 50d);
+        AnchorPane.setRightAnchor(root, 15d);
         myAppController.getMainLoad().getChildren().add(root);
 
     }

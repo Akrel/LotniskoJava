@@ -9,14 +9,14 @@ public class Flight implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private Date date_departure;
-    private Date date_arrival;
+    private Date dateDeparture;
+    private Date dateArrival;
     private int price;
-    private int number_seats;
+    private int numberSeats;
 
-    public Flight( int price, int number_seats) {
+    public Flight(int price, int numberSeats) {
         this.price = price;
-        this.number_seats = number_seats;
+        this.numberSeats = numberSeats;
     }
 
 
@@ -27,14 +27,18 @@ public class Flight implements Serializable {
     @ManyToOne
     @JoinColumn(name = "origin", referencedColumnName = "code")
     private Airport origin;
-    Flight(){};
 
-    public Date getDate_departure() {
-        return date_departure;
+    Flight() {
     }
 
-    public Date getDate_arrival() {
-        return date_arrival;
+    ;
+
+    public Date getDateDepearture() {
+        return dateDeparture;
+    }
+
+    public Date getDateArrival() {
+        return dateArrival;
     }
 
 
@@ -42,12 +46,12 @@ public class Flight implements Serializable {
         return id;
     }
 
-    public void setDate_departure(Date data_wylotu) {
-        this.date_departure = data_wylotu;
+    public void setDateDepearture(Date data_wylotu) {
+        this.dateDeparture = data_wylotu;
     }
 
-    public void setDate_arrival(Date date_przylotu) {
-        this.date_arrival = date_przylotu;
+    public void setDateArrival(Date date_przylotu) {
+        this.dateArrival = date_przylotu;
     }
 
     public void setId(Integer id) {
@@ -65,8 +69,8 @@ public class Flight implements Serializable {
         return origin;
     }
 
-    public int getNumber_seats() {
-        return number_seats;
+    public int getNumberSeats() {
+        return numberSeats;
     }
 
     public Airport getDestination() {
@@ -81,11 +85,13 @@ public class Flight implements Serializable {
         this.price = price;
     }
 
-    public void setNumber_seats(int number_seats) {
-        this.number_seats = number_seats;
+    public void setNumberSeats(int number_seats) {
+        this.numberSeats = number_seats;
     }
 
     public int getPrice() {
         return price;
     }
+
+
 }
