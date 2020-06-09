@@ -1,6 +1,11 @@
 package com.example.model.database;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,11 +19,7 @@ public class Flight implements Serializable {
     private int price;
     private int numberSeats;
 
-    public Flight(int price, int numberSeats) {
-        this.price = price;
-        this.numberSeats = numberSeats;
-    }
-
+    // alt + insert, generate getters and setters
 
     @ManyToOne
     @JoinColumn(name = "destination", referencedColumnName = "code")
@@ -28,10 +29,13 @@ public class Flight implements Serializable {
     @JoinColumn(name = "origin", referencedColumnName = "code")
     private Airport origin;
 
-    Flight() {
+    public Flight() {
     }
 
-    ;
+    public Flight(int price, int numberSeats) {
+        this.price = price;
+        this.numberSeats = numberSeats;
+    }
 
     public Date getDateDepearture() {
         return dateDeparture;
@@ -40,7 +44,6 @@ public class Flight implements Serializable {
     public Date getDateArrival() {
         return dateArrival;
     }
-
 
     public Integer getId() {
         return id;
@@ -92,6 +95,5 @@ public class Flight implements Serializable {
     public int getPrice() {
         return price;
     }
-
 
 }

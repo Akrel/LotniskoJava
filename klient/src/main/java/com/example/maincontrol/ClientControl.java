@@ -1,15 +1,17 @@
 package com.example.maincontrol;
 
-import com.example.model.communication.ListFlightRequest;
-import com.example.model.communication.ListFlightResponse;
-import com.example.model.database.Flight;
-import com.example.model.database.Reservation;
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import org.springframework.stereotype.Component;
+
+import com.example.model.communication.CreateReservationRequest;
+import com.example.model.communication.CreateReservationResponse;
+import com.example.model.communication.ListFlightRequest;
+import com.example.model.communication.ListFlightResponse;
+import com.example.model.database.Flight;
 
 @Component
 public class ClientControl {
@@ -29,11 +31,19 @@ public class ClientControl {
 
         return listFlightResponse;
     }
-    public void sendReservation(Reservation request)
-    {
-        send(request);
+
+    public CreateReservationResponse createReservation(CreateReservationRequest request) {
+        CreateReservationResponse createReservationResponse =  (CreateReservationResponse) send(request);
+        System.out.println("CreateReservationResponse message: " + createReservationResponse.getStatus());
+        return createReservationResponse;
     }
 
+    /**
+     * Metoda obsługująca generyczne wysyłanie requestów i odbieranie responsów.
+     *
+     * @param request  request który powinien być wysłany do serwera
+     * @return odpowiedź od serwera
+     */
     public Object send(Object request) {
         Socket clientSocket = null;
         ObjectOutputStream out = null;

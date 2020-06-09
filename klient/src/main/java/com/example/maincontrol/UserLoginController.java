@@ -26,6 +26,10 @@ public class UserLoginController implements InitializingBean {
     @FXML
     void logButton(MouseEvent event) {
 
+
+        // myAppController.setLoggedInUserId(123);
+        // UserLoginResponse
+        //     User
     }
 
     @Override
@@ -34,5 +38,6 @@ public class UserLoginController implements InitializingBean {
     }
 
     public void logButton(javafx.scene.input.MouseEvent mouseEvent) {
+        // myAppController.setLoggedInUserId(123);
     }
 }
