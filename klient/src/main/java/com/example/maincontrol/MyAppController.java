@@ -1,5 +1,6 @@
 package com.example.maincontrol;
 
+import com.example.model.database.User;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -25,7 +26,9 @@ import java.util.ResourceBundle;
 @Component
 public class MyAppController implements Initializable, InitializingBean {
 
-    public VBox vUserSlideBox;
+    @Autowired
+    SpringFxmlLoader springFxmlLoader;
+
     @FXML
     private AnchorPane mainScene;
     private TranslateTransition openNav;
@@ -35,10 +38,11 @@ public class MyAppController implements Initializable, InitializingBean {
     public JFXButton buttonUser;
     public JFXButton buttonFlight;
     public AnchorPane mainLoad;
+    public VBox vUserSlideBox;
     private boolean initialized = false;
 
-    @Autowired
-    SpringFxmlLoader springFxmlLoader;
+    private User loggedInUser;
+
 
     public void hideAllSliderMenu() {
         userSlideBarHide();
@@ -176,5 +180,15 @@ public class MyAppController implements Initializable, InitializingBean {
     public void afterPropertiesSet() throws Exception {
         System.out.println("1234567890");
         initialized = true;
+    }
+
+
+    public User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+
+    public void setLoggedInUser(User loggedInUser) {
+        this.loggedInUser = loggedInUser;
     }
 }

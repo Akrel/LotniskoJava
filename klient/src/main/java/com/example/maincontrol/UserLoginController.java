@@ -23,6 +23,11 @@ public class UserLoginController implements InitializingBean {
     @FXML
     private JFXPasswordField logPassw;
 
+    // myAppController.setLoggedInUserId(123);
+    // UserLoginResponse
+    //     User
+
+
     @FXML
     void logButton(MouseEvent event) {
 

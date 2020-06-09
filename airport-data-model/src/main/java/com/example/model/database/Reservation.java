@@ -3,6 +3,7 @@ package com.example.model.database;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 public class Reservation implements Serializable {
     @Id
@@ -11,9 +12,12 @@ public class Reservation implements Serializable {
     private String passengerName;
     private String passengerSurname;
     @ManyToOne
-    @JoinColumn(name = "flightId",referencedColumnName = "id")
-    private Flight flightId;
+    @JoinColumn(name = "flight", referencedColumnName = "id")
+    private Flight flight;
 
+    public int getId() {
+        return id;
+    }
 
     public String getPassengerName() {
         return passengerName;
@@ -31,12 +35,13 @@ public class Reservation implements Serializable {
         this.passengerSurname = passengerSurname;
     }
 
-
-    public Flight getFlightId() {
-        return flightId;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setFlightId(Flight flightId) {
-        this.flightId = flightId;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
+
+
 }

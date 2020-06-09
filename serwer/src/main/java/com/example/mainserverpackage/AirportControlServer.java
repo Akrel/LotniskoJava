@@ -1,13 +1,13 @@
 package com.example.mainserverpackage;
 
+import com.example.model.communication.CreateReservationRequest;
+import com.example.model.communication.CreateReservationResponse;
 import com.example.model.communication.ListFlightRequest;
 import com.example.model.communication.ListFlightResponse;
 import com.example.model.database.Flight;
 import com.example.model.database.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,62 +15,117 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Optional;
 
-@Controller
+@Component
 public class AirportControlServer implements Serializable {
     private ServerSocket serverSocket;
-    private Socket clientSocket;
-    private ObjectOutputStream out;
-    private ObjectInputStream in;
+
+
     @Autowired
     private ReservationRepository reservationRepository;
-    public @ResponseBody
-    void addNewReservation(Reservation reservation){
-        reservationRepository.save(reservation);
-        System.out.println("Dodano");
-    };
+
+    @Autowired
+    private FlightRepository flightRepository;
 
 
-    public void start(int port, FlightRepository flightRepository) throws IOException, ClassNotFoundException {
+    /**
+     * @param port
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public void start(int port) throws IOException, ClassNotFoundException {
+        // uruchamiamy socket serwera, do którego może połączyć się klient
         serverSocket = new ServerSocket(port);
 
+        // główna pętla procesująca zapytania
         while (true) {
-            clientSocket = serverSocket.accept();
-            out = new ObjectOutputStream(clientSocket.getOutputStream());
-            in = new ObjectInputStream((clientSocket.getInputStream()));
+            Socket clientSocket = serverSocket.accept();  // tutaj serwer blokuje się, oczekując na zapytanie od klienta
+            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
 
             Object request = in.readObject();
 
-
             if (request instanceof ListFlightRequest) {
                 ListFlightRequest listFlightRequest = (ListFlightRequest) request;
-                Iterable<Flight> all = flightRepository.findAll();
-                ListFlightResponse flightResponse = new ListFlightResponse();
-                for (Flight flight : all) {
-                    flightResponse.insertToList(flight);
-
-                }
+                ListFlightResponse flightResponse = getListFlightResponse(listFlightRequest);
                 out.writeObject(flightResponse);
-//                out.close();
-//                in.close();
-//                clientSocket.close();
-            } else if (request instanceof Reservation) {
-                Reservation reservation = (Reservation) request;
-                addNewReservation(reservation);
+            } else if (request instanceof CreateReservationRequest) {
+                CreateReservationRequest createReservationRequest = (CreateReservationRequest) request;
+                CreateReservationResponse createReservationResponse = getCreateReservationResponse(createReservationRequest);
+                out.writeObject(createReservationResponse);
+            } /* else if (request instanceof NewTypeOfRequest) {
+                NewTypeOfRequest newRequest = (NewTypeOfRequest) request;
+                NewTypeOfResponse newResponse = getNewTypeOfResponse(newRequest);
+                out.writeObject(newResponse);
             }
+            */
 
+            close(clientSocket, out, in);
 
         }
     }
 
-    public void stop() throws IOException {
-        in.close();
-        out.close();
-        clientSocket.close();
-        serverSocket.close();
+    private CreateReservationResponse getCreateReservationResponse(CreateReservationRequest createReservationRequest) throws IOException {
+        // pobieramy flightOptional o przysłanym id z bazy danych
+        // jeżeli istnieje w bazie, dostaniemy optionala z wartością
+        // jeżeli nie istnieje w bazie, dostaniemy pustego optionala
+        Optional<Flight> flightOptional = flightRepository.findById(createReservationRequest.getFlightId());
+
+        // sprawdzamy czy flightOptional istnieje - jeżeli nie, to zwracamy informację o błędnym id
+        if (!flightOptional.isPresent()) {
+            return new CreateReservationResponse("INCORRECT FLIGHT ID - NO SUCH FLIGHT IN DB");
+        }
+
+        Flight flight = flightOptional.get();
+
+        // walidacja wolnych miejsc
+        int numberSeats = flight.getNumberSeats();
+        if (numberSeats == 0) {
+            return new CreateReservationResponse("NOT ENOUGH SEATS FOR FLIGHT");
+        }
+
+        // zmniejszanie liczby wolnych miejsc w locie
+        int newNumberOfSeats = numberSeats - 1;
+        flight.setNumberSeats(newNumberOfSeats);
+        flightRepository.save(flight); // flight posiada id, więc repository wykona UPDATE na tym locie
+
+        // tworzenie rezerwacji
+        Reservation reservation = new Reservation();
+        reservation.setFlight(flight);
+        reservation.setPassengerName(createReservationRequest.getPassengerName());
+        reservation.setPassengerSurname(createReservationRequest.getPassengerSurname());
+        Reservation createdReservation = reservationRepository.save(reservation); // reservation nie posiada id, wiec repository wykona operacje CREATE
+
+        System.out.println("Dodano rezerwacje: " + createdReservation.getId());
+
+        return new CreateReservationResponse("OK, RESERVATION ID: " + createdReservation.getId());
     }
 
+    /**
+     * @param listFlightRequest
+     * @return
+     */
+    private ListFlightResponse getListFlightResponse(ListFlightRequest listFlightRequest) {
+        Iterable<Flight> all = flightRepository.findAll();
+        ListFlightResponse flightResponse = new ListFlightResponse();
+        for (Flight flight : all) {
+            flightResponse.insertToList(flight);
+        }
+        return flightResponse;
+    }
 
+    /**
+     * @param clientSocket
+     * @param out
+     * @param in
+     * @throws IOException
+     */
+    private void close(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) throws IOException {
+        out.close();
+        in.close();
+        clientSocket.close();
+    }
 }
 
 

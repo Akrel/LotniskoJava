@@ -46,12 +46,12 @@ public class Flight implements Serializable {
         return id;
     }
 
-    public void setDateDepearture(Date data_wylotu) {
-        this.dateDeparture = data_wylotu;
+    public void setDateDepearture(Date dateDeparture) {
+        this.dateDeparture = dateDeparture;
     }
 
-    public void setDateArrival(Date date_przylotu) {
-        this.dateArrival = date_przylotu;
+    public void setDateArrival(Date dateArrival) {
+        this.dateArrival = dateArrival;
     }
 
     public void setId(Integer id) {

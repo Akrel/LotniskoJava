@@ -1,5 +1,7 @@
 package com.example.maincontrol;
 
+import com.example.model.communication.CreateReservationRequest;
+import com.example.model.communication.CreateReservationResponse;
 import com.example.model.communication.ListFlightResponse;
 import com.example.model.database.Flight;
 import com.example.model.database.Reservation;
@@ -70,26 +72,6 @@ public class BookFlight implements Initializable {
     }
 
 
-    private AnchorPane loadUi(String ui, ListFlightResponse listFlightResponse) {
-        return (AnchorPane) springFxmlLoader.load(ui + ".fxml", listFlightResponse);
-    }
-
-
-    public void afterPropertiesSet() throws Exception {
-
-    }
-
-    public void backButton(MouseEvent mouseEvent) {
-        if (!myAppController.getMainLoad().getChildren().isEmpty()) {
-            myAppController.getMainLoad().getChildren().clear();
-        }
-
-        AnchorPane root = loadUi("/tableFlights", listFlightResponse);
-        AnchorPane.setRightAnchor(root, 15d);
-        myAppController.getMainLoad().getChildren().add(root);
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Flight> lista = FXCollections.observableArrayList();
@@ -107,6 +89,11 @@ public class BookFlight implements Initializable {
                 return new ReadOnlyObjectWrapper(param.getValue().getDestination().getCity());
             }
         });
+
+        // TODO - wypełnić dane danymi usera jeżeli istnieje
+        //User loggedInUser = myAppController.getLoggedInUser();
+        //nameField.setText("user name");
+
         tableViewBook.setItems(lista);
     }
 
@@ -114,18 +101,33 @@ public class BookFlight implements Initializable {
 
         if (nameField.getText().isEmpty() || surnameField.getText().isEmpty()) {
             infoLabel.setText("FILL ALL FIELDS");
-        } else {
-            infoLabel.setText("");
-            Reservation reservation = new Reservation();
-            reservation.setFlightId(flight);
-            reservation.setPassengerName(nameField.getText());
-            reservation.setPassengerSurname(surnameField.getText());
-            System.out.println(reservation.getFlightId().getId());
-            System.out.println(reservation.getPassengerName());
-            System.out.println(reservation.getPassengerSurname());
-            clientControl.sendReservation(reservation);
         }
+        else {
+            infoLabel.setText("");
+            CreateReservationRequest request = new CreateReservationRequest();
+            request.setFlightId(flight.getId());
+            request.setPassengerName(nameField.getText());
+            request.setPassengerSurname(surnameField.getText());
+            // TODO null check, bo może być niezalogowany użytkownik który robi rezerwacje
+            request.setUserId(myAppController.getLoggedInUser().getId());
+            System.out.println(request.getFlightId());
+            System.out.println(request.getPassengerName());
+            System.out.println(request.getPassengerSurname());
+            CreateReservationResponse reservationResponse = clientControl.createReservation(request);
+            infoLabel.setText(reservationResponse.getStatus());
+                   }
+    }
 
+    public void backButton(MouseEvent mouseEvent) {
+        if (!myAppController.getMainLoad().getChildren().isEmpty()) {
+            myAppController.getMainLoad().getChildren().clear();
+        }
+        AnchorPane root = loadUi("/tableFlights", listFlightResponse);
+        AnchorPane.setRightAnchor(root, 15d);
+        myAppController.getMainLoad().getChildren().add(root);
+    }
 
+    private AnchorPane loadUi(String ui, ListFlightResponse listFlightResponse) {
+        return (AnchorPane) springFxmlLoader.load(ui + ".fxml", listFlightResponse);
     }
 }
