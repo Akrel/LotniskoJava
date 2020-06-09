@@ -3,6 +3,7 @@ package com.example;
 
 import com.example.mainserverpackage.AirportControlServer;
 import com.example.mainserverpackage.FlightRepository;
+import com.example.mainserverpackage.ReservationRepository;
 import com.example.model.database.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -15,4 +15,28 @@ public class Reservation implements Serializable {
     private Flight flightId;
 
 
+    public String getPassengerName() {
+        return passengerName;
+    }
+
+    public void setPassengerName(String passengerName) {
+        this.passengerName = passengerName;
+    }
+
+    public String getPassengerSurname() {
+        return passengerSurname;
+    }
+
+    public void setPassengerSurname(String passengerSurname) {
+        this.passengerSurname = passengerSurname;
+    }
+
+
+    public Flight getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(Flight flightId) {
+        this.flightId = flightId;
+    }
 }

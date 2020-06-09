@@ -2,6 +2,7 @@ package com.example.maincontrol;
 
 import com.example.model.communication.ListFlightResponse;
 import com.example.model.database.Flight;
+import com.example.model.database.Reservation;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -14,15 +15,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -57,7 +57,11 @@ public class BookFlight implements Initializable {
     @FXML
     private JFXTextField surnameField;
 
+    @FXML
+    private Text infoLabel;
+
     private ListFlightResponse listFlightResponse;
+
     private Flight flight;
 
     BookFlight(ListFlightResponse listFlightResponse, Flight flight) {
@@ -88,7 +92,7 @@ public class BookFlight implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Flight> lista =  FXCollections.observableArrayList();
+        ObservableList<Flight> lista = FXCollections.observableArrayList();
         lista.add(flight);
         dateDepartureColumnBook.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Flight, String>, ObservableValue<String>>() {
             @Override
@@ -107,6 +111,21 @@ public class BookFlight implements Initializable {
     }
 
     public void payButton(MouseEvent mouseEvent) {
+
+        if (nameField.getText().isEmpty() || surnameField.getText().isEmpty()) {
+            infoLabel.setText("FILL ALL FIELDS");
+        } else {
+            infoLabel.setText("");
+            Reservation reservation = new Reservation();
+            reservation.setFlightId(flight);
+            reservation.setPassengerName(nameField.getText());
+            reservation.setPassengerSurname(surnameField.getText());
+            System.out.println(reservation.getFlightId().getId());
+            System.out.println(reservation.getPassengerName());
+            System.out.println(reservation.getPassengerSurname());
+            clientControl.sendReservation(reservation);
+        }
+
 
     }
 }

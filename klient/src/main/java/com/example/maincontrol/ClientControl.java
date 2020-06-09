@@ -3,6 +3,7 @@ package com.example.maincontrol;
 import com.example.model.communication.ListFlightRequest;
 import com.example.model.communication.ListFlightResponse;
 import com.example.model.database.Flight;
+import com.example.model.database.Reservation;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -27,6 +28,10 @@ public class ClientControl {
         }
 
         return listFlightResponse;
+    }
+    public void sendReservation(Reservation request)
+    {
+        send(request);
     }
 
     public Object send(Object request) {
