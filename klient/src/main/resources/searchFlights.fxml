@@ -31,7 +31,7 @@
                                 <Insets left="30.0" top="20.0" />
                             </VBox.margin>
                         </Label>
-                        <ChoiceBox prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white;">
+                        <ChoiceBox fx:id="fromLabel" onMouseClicked="#fromPickerLabel" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white;">
                             <VBox.margin>
                                 <Insets left="50.0" right="50.0" top="2.0" />
                             </VBox.margin>
@@ -44,7 +44,7 @@
                                 <Insets bottom="2.0" left="30.0" right="50.0" top="35.0" />
                             </VBox.margin>
                         </Label>
-                        <JFXDatePicker prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white;">
+                        <JFXDatePicker fx:id="departureDateLabel" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white;">
                             <VBox.margin>
                                 <Insets left="50.0" right="50.0" top="2.0" />
                             </VBox.margin>
@@ -61,7 +61,7 @@
                                 <Insets left="30.0" top="20.0" />
                             </VBox.margin>
                         </Label>
-                        <ChoiceBox prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white;">
+                        <ChoiceBox fx:id="destinationLabel" onMouseClicked="#toPickLabel" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white;">
                             <VBox.margin>
                                 <Insets left="50.0" right="50.0" top="2.0" />
                             </VBox.margin>
@@ -74,7 +74,7 @@
                                 <Insets bottom="2.0" left="30.0" right="50.0" top="35.0" />
                             </VBox.margin>
                         </Label>
-                        <JFXDatePicker prefHeight="30.0" prefWidth="203.0" style="-fx-background-color: white;">
+                        <JFXDatePicker fx:id="arrivalDateLabel" prefHeight="30.0" prefWidth="203.0" style="-fx-background-color: white;">
                             <VBox.margin>
                                 <Insets left="50.0" right="50.0" top="2.0" />
                             </VBox.margin>

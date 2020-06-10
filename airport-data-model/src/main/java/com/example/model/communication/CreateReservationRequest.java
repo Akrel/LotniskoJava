@@ -1,8 +1,9 @@
 package com.example.model.communication;
 
 
+import java.io.Serializable;
 
-public class CreateReservationRequest {
+public class CreateReservationRequest implements Serializable {
 
     private int userId;
     private int flightId;

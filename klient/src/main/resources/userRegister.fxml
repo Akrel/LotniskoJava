@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="mainAnchorReg" maxHeight="500.0" prefHeight="510.0" prefWidth="340.0" style="-fx-background-color: #E1F7FA;" stylesheets="@registerCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.UserRegisterController">
     <children>
@@ -104,17 +105,14 @@
                   <Font size="13.0" />
                </font>
                 </CheckBox>
-            <JFXTextField fx:id="waringField" prefHeight="50.0" stylesheets="@registerCss.css" unFocusColor="#4d4d4d00">
-               <padding>
-                  <Insets left="25.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+            <Text fx:id="waringField" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="214.13671875">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font size="14.0" />
                </font>
-            </JFXTextField>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="55.0" top="10.0" />
+               </VBox.margin>
+            </Text>
             <HBox fx:id="boxButton" prefHeight="86.0" prefWidth="340.0">
                <children>
                       <JFXButton fx:id="buttonCancel" onMouseClicked="#clickCancel" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #d91818;" text="Cancel" textFill="WHITE">

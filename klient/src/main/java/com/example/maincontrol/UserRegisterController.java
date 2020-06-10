@@ -1,15 +1,19 @@
 package com.example.maincontrol;
 
-import com.example.model.database.User;
+import com.example.model.communication.CreateUserRequest;
+import com.example.model.communication.CreateUserResponse;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.text.Text;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+
+import java.util.regex.Pattern;
 
 @Controller
 @Component
@@ -19,6 +23,11 @@ public class UserRegisterController implements InitializingBean {
 
     @Autowired
     SpringFxmlLoader springFxmlLoader;
+
+    @Autowired
+    ClientControl clientControl;
+
+
     @FXML
     private JFXTextField filedName;
     @FXML
@@ -37,44 +46,9 @@ public class UserRegisterController implements InitializingBean {
     private JFXButton buttonCreate;
     @FXML
     private JFXButton buttonCancel;
-
-
-    public JFXTextField getFieldEmail() {
-        return fieldEmail;
-    }
-
-    public JFXPasswordField getFieldPassword() {
-        return fieldPassword;
-    }
-
-    public JFXPasswordField getFieldRePass() {
-        return fieldRePass;
-    }
-
-    public CheckBox getCheckBox() {
-        return checkBox;
-    }
-
-    public JFXButton getButtonCancel() {
-        return buttonCancel;
-    }
-
-    public JFXButton getButtonCreate() {
-        return buttonCreate;
-    }
-
-    public JFXTextField getFieldPhone() {
-        return fieldPhone;
-    }
-
-    public JFXTextField getFieldSurname() {
-        return fieldSurname;
-    }
-
-    public JFXTextField getFiledName() {
-        return filedName;
-    }
-
+    @FXML
+    private Text waringField;
+    final String strRegEx = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,15}$";
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -82,28 +56,73 @@ public class UserRegisterController implements InitializingBean {
     }
 
     public void clickCreateAccount(javafx.scene.input.MouseEvent mouseEvent) {
+        waringField.setText("");
+        Boolean check = false;
+        check = isValid(fieldEmail.toString());
+        if (!filedName.getText().isEmpty()) {
 
-        String name = getFiledName().toString();
-        String surname = getFieldSurname().toString();
-        String email = getFieldEmail().toString();
-        String phone = getFieldPhone().toString();
-        String password = getFieldPassword().toString();
-        String rePassw = getFieldRePass().toString();
+            if (!fieldSurname.getText().isEmpty()) {
+                if (!fieldEmail.getText().isEmpty()) {
+                    if (!check) {
+                        if (!fieldPhone.getText().isEmpty()) {
+                            if (!fieldPassword.getText().isEmpty() || !fieldRePass.getText().isEmpty()) {
+                                if (fieldRePass.getText().equals(fieldPassword.getText())) {
+                                    if(checkBox.isSelected())
+                                    {
+                                        CreateUserRequest createUserRequest = new CreateUserRequest();
+                                        createUserRequest.setName(filedName.getText());
+                                        createUserRequest.setSurname(fieldSurname.getText());
+                                        createUserRequest.setPhone(fieldPhone.getText());
+                                        createUserRequest.setPassword(fieldPassword.getText());
+                                        createUserRequest.setEmail(fieldEmail.getText());
+                                        CreateUserResponse createUserResponse = clientControl.registerUser(createUserRequest);
+                                        waringField.setText(createUserResponse.getStatus());
+                                    }
+                                    else{
+                                        waringField.setText("Accept accept terms and conditions");
+                                    }
+                                } else {
+                                    waringField.setText("Bad password");
+                                }
+                            } else {
+                                waringField.setText("Empty password");
+                            }
+                        } else {
+                            waringField.setText("Empty phone number");
+                        }
+                    } else {
+                        waringField.setText("Bad email");
+                    }
+                } else {
+                    waringField.setText("Empty email");
 
-        if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
-            System.out.println("Zle uzupelniono");
+                }
+            } else {
+                waringField.setText("Empty surname");
+            }
         } else {
-                if (!rePassw.equals(password))
-                {
-                    System.out.println("Zle haslo");
-                }
-                else {
-                    User nowy = new User(name,surname,email,phone,password);
-                }
+            waringField.setText("Empty name");
         }
 
     }
 
+    public static boolean isValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
+
     public void clickCancel(javafx.scene.input.MouseEvent mouseEvent) {
+    /*    if () {
+
+        } else {
+            waringField.setText("Bad Email");
+        }*/
     }
 }

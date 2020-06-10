@@ -1,11 +1,9 @@
 package com.example.mainserverpackage;
 
-import com.example.model.communication.CreateReservationRequest;
-import com.example.model.communication.CreateReservationResponse;
-import com.example.model.communication.ListFlightRequest;
-import com.example.model.communication.ListFlightResponse;
+import com.example.model.communication.*;
 import com.example.model.database.Flight;
 import com.example.model.database.Reservation;
+import com.example.model.database.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +25,8 @@ public class AirportControlServer implements Serializable {
 
     @Autowired
     private FlightRepository flightRepository;
-
+    @Autowired
+    private UserRepository userRepository;
 
     /**
      * @param port
@@ -37,7 +36,7 @@ public class AirportControlServer implements Serializable {
     public void start(int port) throws IOException, ClassNotFoundException {
         // uruchamiamy socket serwera, do którego może połączyć się klient
         serverSocket = new ServerSocket(port);
-
+        System.out.println("START SERVER");
         // główna pętla procesująca zapytania
         while (true) {
             Socket clientSocket = serverSocket.accept();  // tutaj serwer blokuje się, oczekując na zapytanie od klienta
@@ -49,12 +48,21 @@ public class AirportControlServer implements Serializable {
             if (request instanceof ListFlightRequest) {
                 ListFlightRequest listFlightRequest = (ListFlightRequest) request;
                 ListFlightResponse flightResponse = getListFlightResponse(listFlightRequest);
+                System.out.println("t");
                 out.writeObject(flightResponse);
             } else if (request instanceof CreateReservationRequest) {
                 CreateReservationRequest createReservationRequest = (CreateReservationRequest) request;
                 CreateReservationResponse createReservationResponse = getCreateReservationResponse(createReservationRequest);
                 out.writeObject(createReservationResponse);
-            } /* else if (request instanceof NewTypeOfRequest) {
+            }
+            else if (request instanceof CreateUserRequest)
+            {
+                CreateUserRequest createUserRequest = (CreateUserRequest) request;
+                CreateUserResponse createUserResponse = getCreateUserResponse(createUserRequest);
+                out.writeObject(createUserResponse);
+            }
+
+            /* else if (request instanceof NewTypeOfRequest) {
                 NewTypeOfRequest newRequest = (NewTypeOfRequest) request;
                 NewTypeOfResponse newResponse = getNewTypeOfResponse(newRequest);
                 out.writeObject(newResponse);
@@ -64,6 +72,18 @@ public class AirportControlServer implements Serializable {
             close(clientSocket, out, in);
 
         }
+    }
+
+    private CreateUserResponse getCreateUserResponse(CreateUserRequest createUserRequest) {
+        User user = new User();
+        user.setEmail(createUserRequest.getEmail());
+        user.setName(createUserRequest.getName());
+        user.setSurname(createUserRequest.getSurname());
+        user.setPassword(createUserRequest.getPassword());
+        user.setPhone(createUserRequest.getPhone());
+        User createdUser = userRepository.save(user);
+        System.out.println("Add client");
+        return new CreateUserResponse("Register: " + createdUser.getName()+ " " + createdUser.getSurname());
     }
 
     private CreateReservationResponse getCreateReservationResponse(CreateReservationRequest createReservationRequest) throws IOException {
@@ -107,7 +127,13 @@ public class AirportControlServer implements Serializable {
      * @return
      */
     private ListFlightResponse getListFlightResponse(ListFlightRequest listFlightRequest) {
-        Iterable<Flight> all = flightRepository.findAll();
+        Iterable<Flight> all = null;
+        if (!(listFlightRequest.getOrigin().isEmpty() && listFlightRequest.getDestination().isEmpty())) {
+            all = flightRepository.findByOriginCityAndDestinationCity(listFlightRequest.getOrigin(), listFlightRequest.getDestination());
+        } else if (!(listFlightRequest.getArrivalDate().toString().isEmpty() && listFlightRequest.getDepartureDate().toString().isEmpty())) {
+            all = flightRepository.findByDateArrivalAndAndDateDeparture(listFlightRequest.getArrivalDate().toString(), listFlightRequest.getDepartureDate().toString());
+        }
+
         ListFlightResponse flightResponse = new ListFlightResponse();
         for (Flight flight : all) {
             flightResponse.insertToList(flight);

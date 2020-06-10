@@ -2,12 +2,15 @@ package com.example.model.communication;
 
 import java.io.Serializable;
 
-public class CreateReservationResponse implements Serializable {
+public class CreateUserResponse implements Serializable {
 
-    private String status;
+    String status;
 
-    public CreateReservationResponse(String status) {
+    public CreateUserResponse(String status) {
         this.status = status;
+    }
+
+    public CreateUserResponse() {
     }
 
     public String getStatus() {
@@ -17,4 +20,5 @@ public class CreateReservationResponse implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }

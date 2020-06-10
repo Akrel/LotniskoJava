@@ -109,7 +109,7 @@ public class BookFlight implements Initializable {
             request.setPassengerName(nameField.getText());
             request.setPassengerSurname(surnameField.getText());
             // TODO null check, bo może być niezalogowany użytkownik który robi rezerwacje
-            request.setUserId(myAppController.getLoggedInUser().getId());
+//            request.setUserId(myAppController.getLoggedInUser().getId());
             System.out.println(request.getFlightId());
             System.out.println(request.getPassengerName());
             System.out.println(request.getPassengerSurname());

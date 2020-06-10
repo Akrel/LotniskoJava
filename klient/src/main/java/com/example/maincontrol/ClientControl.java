@@ -1,9 +1,6 @@
 package com.example.maincontrol;
 
-import com.example.model.communication.CreateReservationRequest;
-import com.example.model.communication.CreateReservationResponse;
-import com.example.model.communication.ListFlightRequest;
-import com.example.model.communication.ListFlightResponse;
+import com.example.model.communication.*;
 import com.example.model.database.Flight;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +33,12 @@ public class ClientControl {
         System.out.println("CreateReservationResponse message: " + createReservationResponse.getStatus());
         return createReservationResponse;
     }
+
+    public CreateUserResponse registerUser(CreateUserRequest request) {
+        CreateUserResponse createUserResponse = (CreateUserResponse) send(request);
+        return createUserResponse;
+    }
+
 
     /**
      * Metoda obsługująca generyczne wysyłanie requestów i odbieranie responsów.

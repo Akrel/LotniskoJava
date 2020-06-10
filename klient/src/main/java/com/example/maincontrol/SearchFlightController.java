@@ -3,6 +3,12 @@ package com.example.maincontrol;
 import com.example.model.communication.ListFlightRequest;
 import com.example.model.communication.ListFlightResponse;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +28,21 @@ public class SearchFlightController implements InitializingBean {
     @Autowired
     ClientControl clientControl;
 
+
+    @FXML
+    private JFXDatePicker departureDateLabel;
+
+    @FXML
+    private ChoiceBox<String> destinationLabel;
+
+    @FXML
+    private JFXDatePicker arrivalDateLabel;
+    @FXML
+    private ChoiceBox<String> fromLabel;
     public JFXButton buttonUser;
+
+    static ObservableList<String> list = FXCollections.observableArrayList("Krakow", "Gdansk", "Katowice","Radom");
+
 
     private AnchorPane loadUi(String ui, ListFlightResponse listFlightResponse) {
         return (AnchorPane) springFxmlLoader.load(ui + ".fxml", listFlightResponse);
@@ -35,6 +55,12 @@ public class SearchFlightController implements InitializingBean {
 
         // wyszukaj liste lotow
         ListFlightRequest request = new ListFlightRequest();
+
+
+        request.setDestination(destinationLabel.getValue());
+        request.setOrigin(fromLabel.getValue());
+
+
         ListFlightResponse listFlightResponse = clientControl.listFlights(request);
 
         // stworz nowy widok, przekazujac mu wyszukana liste lotow
@@ -46,6 +72,15 @@ public class SearchFlightController implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+
         System.out.println("SearchFlightController initialized");
+    }
+
+    public void fromPickerLabel(MouseEvent mouseEvent) {
+        fromLabel.setItems(list);
+    }
+
+    public void toPickLabel(MouseEvent mouseEvent) {
+        destinationLabel.setItems(list);
     }
 }
