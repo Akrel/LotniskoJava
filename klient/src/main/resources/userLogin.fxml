@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefWidth="480.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="100d" AnchorPane.leftAnchor="170d" AnchorPane.rightAnchor="170d" AnchorPane.topAnchor="100d" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.UserLoginController">
     <children>
@@ -36,7 +37,7 @@
                   <Insets bottom="4.0" left="35.0" top="30.0" />
                </VBox.margin>
             </Label>
-                <JFXTextField fx:id="logEmail" focusColor="BLACK" prefHeight="35.0" prefWidth="220.0" promptText="E-mail" style="-fx-background-color: white;" unFocusColor="BLACK" VBox.vgrow="ALWAYS">
+                <JFXTextField fx:id="logEmail" focusColor="TRANSPARENT" prefHeight="30.0" prefWidth="340.0" promptText="E-mail" style="-fx-background-color: white;" unFocusColor="TRANSPARENT" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets left="70.0" right="70.0" />
                     </VBox.margin>
@@ -49,14 +50,22 @@
                   <Insets bottom="2.0" left="35.0" top="30.0" />
                </VBox.margin>
             </Label>
-                <JFXPasswordField fx:id="logPassw" prefHeight="35.0" prefWidth="220.0" promptText="Password" style="-fx-background-color: white;" unFocusColor="BLACK" VBox.vgrow="ALWAYS">
+                <JFXPasswordField fx:id="logPassw" prefHeight="29.0" prefWidth="320.0" promptText="Password" style="-fx-background-color: white;" unFocusColor="TRANSPARENT" VBox.vgrow="ALWAYS">
                     <VBox.margin>
-                        <Insets left="90.0" right="70.0" />
+                        <Insets left="70.0" right="70.0" />
                     </VBox.margin>
                 </JFXPasswordField>
-                <JFXButton onMouseClicked="#logButton" prefHeight="80.0" prefWidth="170.0" style="-fx-background-color: #05b61a;" text="ZALOGUJ" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <Text fx:id="infoLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="267.13671875">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="145.0" top="30.0" />
+               </VBox.margin>
+            </Text>
+                <JFXButton onMouseClicked="#logButton" prefHeight="54.0" prefWidth="190.0" style="-fx-background-color: #05b61a;" text="LOGIN" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <VBox.margin>
-                        <Insets bottom="20.0" left="154.0" right="120.0" top="100.0" />
+                        <Insets bottom="8.0" left="146.0" right="120.0" top="65.0" />
                     </VBox.margin>
                     <font>
                         <Font name="System Bold" size="18.0" />

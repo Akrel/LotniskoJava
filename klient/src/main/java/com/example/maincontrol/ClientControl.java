@@ -33,6 +33,10 @@ public class ClientControl {
         System.out.println("CreateReservationResponse message: " + createReservationResponse.getStatus());
         return createReservationResponse;
     }
+    public LoginUserResponse loginUser(LoginUserRequest loginUserRequest) {
+        LoginUserResponse loginUserResponse = (LoginUserResponse) send(loginUserRequest);
+        return loginUserResponse;
+    }
 
     public CreateUserResponse registerUser(CreateUserRequest request) {
         CreateUserResponse createUserResponse = (CreateUserResponse) send(request);
@@ -85,5 +89,6 @@ public class ClientControl {
             System.err.println("Error while closing connection");
         }
     }
+
 
 }

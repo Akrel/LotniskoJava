@@ -54,14 +54,15 @@ public class AirportControlServer implements Serializable {
                 CreateReservationRequest createReservationRequest = (CreateReservationRequest) request;
                 CreateReservationResponse createReservationResponse = getCreateReservationResponse(createReservationRequest);
                 out.writeObject(createReservationResponse);
-            }
-            else if (request instanceof CreateUserRequest)
-            {
+            } else if (request instanceof CreateUserRequest) {
                 CreateUserRequest createUserRequest = (CreateUserRequest) request;
                 CreateUserResponse createUserResponse = getCreateUserResponse(createUserRequest);
                 out.writeObject(createUserResponse);
+            } else if (request instanceof LoginUserRequest) {
+                LoginUserRequest loginUserRequest = (LoginUserRequest) request;
+                LoginUserResponse loginUserResponse = getLoginUser(loginUserRequest);
+                out.writeObject(loginUserResponse);
             }
-
             /* else if (request instanceof NewTypeOfRequest) {
                 NewTypeOfRequest newRequest = (NewTypeOfRequest) request;
                 NewTypeOfResponse newResponse = getNewTypeOfResponse(newRequest);
@@ -74,6 +75,23 @@ public class AirportControlServer implements Serializable {
         }
     }
 
+    private LoginUserResponse getLoginUser(LoginUserRequest loginUserRequest) {
+        User user = userRepository.findUserByEmail(loginUserRequest.getEmail());
+
+        if (user != null) {
+            if (user.getPassword().equals(loginUserRequest.getPassword())) {
+                System.out.println("ZNALEZIONO");
+                return new LoginUserResponse("HELLO: ", user);
+            } else {
+                return new LoginUserResponse("NOT FOUND USER", null);
+            }
+        }
+        else {
+            return new LoginUserResponse("NOT FOUND USER", null);
+        }
+
+    }
+
     private CreateUserResponse getCreateUserResponse(CreateUserRequest createUserRequest) {
         User user = new User();
         user.setEmail(createUserRequest.getEmail());
@@ -83,7 +101,7 @@ public class AirportControlServer implements Serializable {
         user.setPhone(createUserRequest.getPhone());
         User createdUser = userRepository.save(user);
         System.out.println("Add client");
-        return new CreateUserResponse("Register: " + createdUser.getName()+ " " + createdUser.getSurname());
+        return new CreateUserResponse("REGISTER: " + createdUser.getName() + " " + createdUser.getSurname());
     }
 
     private CreateReservationResponse getCreateReservationResponse(CreateReservationRequest createReservationRequest) throws IOException {
