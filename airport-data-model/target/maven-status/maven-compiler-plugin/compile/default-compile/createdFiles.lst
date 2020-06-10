@@ -1,0 +1,5 @@
+com\example\model\Airport.class
+com\example\model\Flight.class
+com\example\model\User.class
+com\example\model\ListFlightRequest.class
+com\example\model\ListFlightResponse.class

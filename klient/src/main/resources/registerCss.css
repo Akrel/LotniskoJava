@@ -1,0 +1,8 @@
+
+
+#boxButton .jfx-password-field .jfx-text-field
+{
+    -fx-prompt-text-fill: RED;
+    -jfx-focus-color: WHITE;
+
+}
