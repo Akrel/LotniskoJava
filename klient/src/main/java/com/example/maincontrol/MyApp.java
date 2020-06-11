@@ -1,5 +1,6 @@
 package com.example.maincontrol;
 
+import com.example.model.database.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,7 @@ public class MyApp extends Application {
 
     private ConfigurableApplicationContext springContext;
     private Parent rootNode;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -47,5 +49,6 @@ public class MyApp extends Application {
     public void stop() {
         springContext.stop();
     }
+
 
 }

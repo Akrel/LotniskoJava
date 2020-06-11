@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -15,9 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 @Controller
 @Component
-public class SearchFlightController implements InitializingBean {
+public class SearchFlightController implements InitializingBean, Initializable {
 
     @Autowired
     MyAppController myAppController;
@@ -41,7 +45,7 @@ public class SearchFlightController implements InitializingBean {
     private ChoiceBox<String> fromLabel;
     public JFXButton buttonUser;
 
-    static ObservableList<String> list = FXCollections.observableArrayList("Krakow", "Gdansk", "Katowice","Radom");
+    static ObservableList<String> list = FXCollections.observableArrayList("Krakow", "Gdansk", "Katowice", "Radom");
 
 
     private AnchorPane loadUi(String ui, ListFlightResponse listFlightResponse) {
@@ -77,10 +81,16 @@ public class SearchFlightController implements InitializingBean {
     }
 
     public void fromPickerLabel(MouseEvent mouseEvent) {
-        fromLabel.setItems(list);
+
     }
 
     public void toPickLabel(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        fromLabel.setItems(list);
         destinationLabel.setItems(list);
     }
 }

@@ -46,6 +46,7 @@ public class UserLoginController implements InitializingBean {
                 loginUserRequest.setPassword(logPassw.getText());
                 LoginUserResponse loginUserResponse = clientControl.loginUser(loginUserRequest);
                infoLabel.setText(loginUserResponse.getStatus() + loginUserResponse.getUser().getName());
+               myAppController.setLoggedInUser(loginUserResponse.getUser());
             } else {
                 infoLabel.setText("PASSWORD EMPTY");
             }

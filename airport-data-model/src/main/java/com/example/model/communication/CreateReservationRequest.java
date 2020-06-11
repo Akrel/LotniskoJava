@@ -1,11 +1,14 @@
 package com.example.model.communication;
 
 
+import com.example.model.database.User;
+
 import java.io.Serializable;
 
 public class CreateReservationRequest implements Serializable {
 
-    private int userId;
+
+    private User user;
     private int flightId;
     private String passengerName;
     private String passengerSurname;
@@ -34,11 +37,13 @@ public class CreateReservationRequest implements Serializable {
         this.passengerSurname = passengerSurname;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
+
+
 }

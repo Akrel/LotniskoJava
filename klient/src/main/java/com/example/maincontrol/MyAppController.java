@@ -40,21 +40,25 @@ public class MyAppController implements Initializable, InitializingBean {
     public AnchorPane mainLoad;
     public VBox vUserSlideBox;
     private boolean initialized = false;
+    private JFXButton buttonPanelClient;
 
     private User loggedInUser;
 
 
     public void hideAllSliderMenu() {
+
         userSlideBarHide();
     }
 
     @FXML
-    public void u1(MouseEvent event) throws IOException {
+    public void loginUserButton(MouseEvent event) throws IOException {
         if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
         }
         AnchorPane root = loadUi("/userLogin");
+        AnchorPane.setLeftAnchor(root, 210d);
         mainLoad.getChildren().add(root);
+
         hideAllSliderMenu();
     }
 
@@ -79,7 +83,7 @@ public class MyAppController implements Initializable, InitializingBean {
         AnchorPane root = loadUi("/userRegister");
         AnchorPane.setLeftAnchor(root, 220d);
         AnchorPane.setRightAnchor(root, 230d);
-        AnchorPane.setTopAnchor(root, 30d);
+        AnchorPane.setTopAnchor(root, 50d);
         AnchorPane.setBottomAnchor(root, 30d);
         mainLoad.getChildren().add(root);
         hideAllSliderMenu();
@@ -98,13 +102,6 @@ public class MyAppController implements Initializable, InitializingBean {
         stage.setY(event.getScreenY() - SceneY);
     }
 
-
-    @FXML
-    void max(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setFullScreenExitHint(" ");
-        stage.setFullScreen(!stage.isFullScreen());
-    }
 
     @FXML
     void min(MouseEvent event) {
@@ -157,10 +154,12 @@ public class MyAppController implements Initializable, InitializingBean {
         if ((vUserSlideBox.getTranslateX()) == -(vUserSlideBox.getWidth())) {
             buttonUser.getStyleClass().remove("side-button");
             buttonUser.getStyleClass().add("sidebar-button-active");
+
             openNav.play();
         } else {
             userSlideBarHide();
         }
+
     }
 
     private AnchorPane loadUi(String ui) {
@@ -191,4 +190,18 @@ public class MyAppController implements Initializable, InitializingBean {
     public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
+
+    public void clientPanelButton(MouseEvent mouseEvent) {
+        if (!mainLoad.getChildren().isEmpty()) {
+            mainLoad.getChildren().clear();
+        }
+        AnchorPane root = loadUi("/userPanel");
+        mainLoad.getChildren().add(root);
+        AnchorPane.setLeftAnchor(root, 110d);
+        hideAllSliderMenu();
+
+    }
+
+
+
 }

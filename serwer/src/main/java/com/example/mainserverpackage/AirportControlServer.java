@@ -81,7 +81,7 @@ public class AirportControlServer implements Serializable {
         if (user != null) {
             if (user.getPassword().equals(loginUserRequest.getPassword())) {
                 System.out.println("ZNALEZIONO");
-                return new LoginUserResponse("HELLO: ", user);
+                return new LoginUserResponse("Hello: ", user);
             } else {
                 return new LoginUserResponse("NOT FOUND USER", null);
             }
@@ -133,6 +133,7 @@ public class AirportControlServer implements Serializable {
         reservation.setFlight(flight);
         reservation.setPassengerName(createReservationRequest.getPassengerName());
         reservation.setPassengerSurname(createReservationRequest.getPassengerSurname());
+        reservation.setClient(createReservationRequest.getUser());
         Reservation createdReservation = reservationRepository.save(reservation); // reservation nie posiada id, wiec repository wykona operacje CREATE
 
         System.out.println("Dodano rezerwacje: " + createdReservation.getId());

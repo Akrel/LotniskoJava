@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,7 @@ public class UserRegisterController implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
 
     }
+    //TODO przycisk cancel przenosi na logowanie lub clear
 
     public void clickCreateAccount(javafx.scene.input.MouseEvent mouseEvent) {
         waringField.setText("");
@@ -119,10 +121,16 @@ public class UserRegisterController implements InitializingBean {
     }
 
     public void clickCancel(javafx.scene.input.MouseEvent mouseEvent) {
-    /*    if () {
+        if (!myAppController.getMainLoad().getChildren().isEmpty()) {
+            myAppController.getMainLoad().getChildren().clear();
+        }
+        AnchorPane root = loadUi("/userLogin");
+        AnchorPane.setLeftAnchor(root, 210d);
+        myAppController.getMainLoad().getChildren().add(root);
 
-        } else {
-            waringField.setText("Bad Email");
-        }*/
+        myAppController.hideAllSliderMenu();
+    }
+    private AnchorPane loadUi(String ui) {
+        return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
     }
 }

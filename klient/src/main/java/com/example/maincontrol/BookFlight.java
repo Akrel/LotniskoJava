@@ -4,7 +4,7 @@ import com.example.model.communication.CreateReservationRequest;
 import com.example.model.communication.CreateReservationResponse;
 import com.example.model.communication.ListFlightResponse;
 import com.example.model.database.Flight;
-import com.example.model.database.Reservation;
+import com.example.model.database.User;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -19,6 +19,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -30,9 +32,10 @@ import java.util.ResourceBundle;
 
 @Controller
 @Component
+
 @Scope("prototype")
 public class BookFlight implements Initializable {
-
+    Logger logger =  LoggerFactory.getLogger(BookFlight.class);
     @Autowired
     MyAppController myAppController;
 
@@ -66,6 +69,8 @@ public class BookFlight implements Initializable {
 
     private Flight flight;
 
+
+
     BookFlight(ListFlightResponse listFlightResponse, Flight flight) {
         this.flight = flight;
         this.listFlightResponse = listFlightResponse;
@@ -90,9 +95,13 @@ public class BookFlight implements Initializable {
             }
         });
 
-        // TODO - wypełnić dane danymi usera jeżeli istnieje
-        //User loggedInUser = myAppController.getLoggedInUser();
-        //nameField.setText("user name");
+
+        User loggedInUser = myAppController.getLoggedInUser();
+        if(loggedInUser != null)
+        {
+            nameField.setText(loggedInUser.getName());
+            surnameField.setText(loggedInUser.getSurname());
+        }
 
         tableViewBook.setItems(lista);
     }
@@ -105,11 +114,17 @@ public class BookFlight implements Initializable {
         else {
             infoLabel.setText("");
             CreateReservationRequest request = new CreateReservationRequest();
+            User user = myAppController.getLoggedInUser();
+
+
             request.setFlightId(flight.getId());
             request.setPassengerName(nameField.getText());
             request.setPassengerSurname(surnameField.getText());
-            // TODO null check, bo może być niezalogowany użytkownik który robi rezerwacje
-//            request.setUserId(myAppController.getLoggedInUser().getId());
+            User loggedInUser = myAppController.getLoggedInUser();
+            if(loggedInUser != null)
+            {
+                request.setUser(loggedInUser);
+            }
             System.out.println(request.getFlightId());
             System.out.println(request.getPassengerName());
             System.out.println(request.getPassengerSurname());

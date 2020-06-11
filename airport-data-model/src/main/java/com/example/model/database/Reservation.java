@@ -11,14 +11,35 @@ public class Reservation implements Serializable {
     private int id;
     private String passengerName;
     private String passengerSurname;
+
     @ManyToOne
     @JoinColumn(name = "flight", referencedColumnName = "id")
     private Flight flight;
 
+    @ManyToOne
+    @JoinColumn(name = "client",referencedColumnName = "id")
+    private User client;
+
+    public User getClient() {
+        return client;
+    }
+
+    public void setClient(User client) {
+        this.client = client;
+    }
+
+
+
+    public Reservation() {
+    }
+
+
     public int getId() {
         return id;
     }
-
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getPassengerName() {
         return passengerName;
     }

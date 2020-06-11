@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 
-@Entity(name = "Userek") // This tells Hibernate to make a table out of this class
+@Entity(name = "Client") // This tells Hibernate to make a table out of this class
 public class User implements Serializable {
 
     @Id
