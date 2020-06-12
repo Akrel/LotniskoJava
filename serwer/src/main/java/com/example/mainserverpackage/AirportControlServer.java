@@ -4,6 +4,8 @@ import com.example.model.communication.*;
 import com.example.model.database.Flight;
 import com.example.model.database.Reservation;
 import com.example.model.database.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +21,7 @@ import java.util.Optional;
 public class AirportControlServer implements Serializable {
     private ServerSocket serverSocket;
 
-
+    Logger logger = LoggerFactory.getLogger(AirportControlServer.class);
     @Autowired
     private ReservationRepository reservationRepository;
 
@@ -36,7 +38,7 @@ public class AirportControlServer implements Serializable {
     public void start(int port) throws IOException, ClassNotFoundException {
         // uruchamiamy socket serwera, do którego może połączyć się klient
         serverSocket = new ServerSocket(port);
-        System.out.println("START SERVER");
+        logger.info("START SERVER");
         // główna pętla procesująca zapytania
         while (true) {
             Socket clientSocket = serverSocket.accept();  // tutaj serwer blokuje się, oczekując na zapytanie od klienta
@@ -48,7 +50,7 @@ public class AirportControlServer implements Serializable {
             if (request instanceof ListFlightRequest) {
                 ListFlightRequest listFlightRequest = (ListFlightRequest) request;
                 ListFlightResponse flightResponse = getListFlightResponse(listFlightRequest);
-                System.out.println("t");
+
                 out.writeObject(flightResponse);
             } else if (request instanceof CreateReservationRequest) {
                 CreateReservationRequest createReservationRequest = (CreateReservationRequest) request;
@@ -80,13 +82,12 @@ public class AirportControlServer implements Serializable {
 
         if (user != null) {
             if (user.getPassword().equals(loginUserRequest.getPassword())) {
-                System.out.println("ZNALEZIONO");
+                logger.info("ZNALEZIONO");
                 return new LoginUserResponse("Hello: ", user);
             } else {
                 return new LoginUserResponse("NOT FOUND USER", null);
             }
-        }
-        else {
+        } else {
             return new LoginUserResponse("NOT FOUND USER", null);
         }
 
@@ -100,7 +101,7 @@ public class AirportControlServer implements Serializable {
         user.setPassword(createUserRequest.getPassword());
         user.setPhone(createUserRequest.getPhone());
         User createdUser = userRepository.save(user);
-        System.out.println("Add client");
+        logger.info("Add client");
         return new CreateUserResponse("REGISTER: " + createdUser.getName() + " " + createdUser.getSurname());
     }
 
@@ -136,7 +137,7 @@ public class AirportControlServer implements Serializable {
         reservation.setClient(createReservationRequest.getUser());
         Reservation createdReservation = reservationRepository.save(reservation); // reservation nie posiada id, wiec repository wykona operacje CREATE
 
-        System.out.println("Dodano rezerwacje: " + createdReservation.getId());
+        logger.info("Dodano rezerwacje: " + createdReservation.getId());
 
         return new CreateReservationResponse("OK, RESERVATION ID: " + createdReservation.getId());
     }

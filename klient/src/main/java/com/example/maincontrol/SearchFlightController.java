@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +24,7 @@ import java.util.ResourceBundle;
 @Controller
 @Component
 public class SearchFlightController implements InitializingBean, Initializable {
-
+    Logger logger =  LoggerFactory.getLogger(SearchFlightController.class);
     @Autowired
     MyAppController myAppController;
 
@@ -77,7 +79,7 @@ public class SearchFlightController implements InitializingBean, Initializable {
     @Override
     public void afterPropertiesSet() throws Exception {
 
-        System.out.println("SearchFlightController initialized");
+       logger.info("SearchFlightController initialized");
     }
 
     public void fromPickerLabel(MouseEvent mouseEvent) {

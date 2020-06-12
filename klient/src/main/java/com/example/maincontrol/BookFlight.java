@@ -125,9 +125,9 @@ public class BookFlight implements Initializable {
             {
                 request.setUser(loggedInUser);
             }
-            System.out.println(request.getFlightId());
-            System.out.println(request.getPassengerName());
-            System.out.println(request.getPassengerSurname());
+
+            logger.info(request.getPassengerName());
+            logger.info(request.getPassengerSurname());
             CreateReservationResponse reservationResponse = clientControl.createReservation(request);
             infoLabel.setText(reservationResponse.getStatus());
                    }

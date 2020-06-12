@@ -55,7 +55,6 @@ public class UserRegisterController implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
 
     }
-    //TODO przycisk cancel przenosi na logowanie lub clear
 
     public void clickCreateAccount(javafx.scene.input.MouseEvent mouseEvent) {
         waringField.setText("");

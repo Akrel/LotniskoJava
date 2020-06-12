@@ -175,11 +175,6 @@ public class MyAppController implements Initializable, InitializingBean {
         return mainLoad;
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("1234567890");
-        initialized = true;
-    }
 
 
     public User getLoggedInUser() {
@@ -203,5 +198,8 @@ public class MyAppController implements Initializable, InitializingBean {
     }
 
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
 
+    }
 }
