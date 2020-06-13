@@ -7,6 +7,10 @@ import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.Set;
 
+/**
+ *  Klasa lotniska przechowuje dane o lotnisku.
+ *  Na podstawie klasy tworzona jest tabela w bazie danych.
+ */
 @Entity
 public class Airport implements Serializable {
 

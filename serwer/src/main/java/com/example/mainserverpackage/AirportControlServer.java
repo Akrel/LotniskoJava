@@ -19,6 +19,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Klasa odpowiada za kontrole nad serwerem.
+ * Tworzy oraz udostępnia socket na którym klient może się komunikować
+ * Obługuje żądania klienta
+ */
 @Component
 public class AirportControlServer implements Serializable {
     private ServerSocket serverSocket;
@@ -35,7 +40,11 @@ public class AirportControlServer implements Serializable {
     private AirportRepository airportRepository;
 
     /**
-     * @param port
+     * Metoda do uruchomienia  serwerem.
+     * Tworzy socket na danym poracie oraz otwiera strumienie do obierania danych od klienta.
+     * Metoda czeka na nadchodzące żadania(Request) i odpowida na nie (response)
+     *
+     * @param port port na którym serwer komunikuje się z aplikacją kliencka
      * @throws IOException
      * @throws ClassNotFoundException
      */
@@ -84,6 +93,12 @@ public class AirportControlServer implements Serializable {
         }
     }
 
+    /**
+     * Metoda do obsługi żądań dotyczących rezerwacji
+     *
+     * @param findReservationRequest żądanie od klienta
+     * @return odpwoiedź do klienta
+     */
     private FindReservationResponse findReservation(FindReservationRequest findReservationRequest) {
         Iterable<Reservation> reservations = reservationRepository.findByClient_Id(findReservationRequest.getUserId());
         if (reservations == null) {
@@ -98,6 +113,12 @@ public class AirportControlServer implements Serializable {
         }
     }
 
+    /**
+     * Metoda do obsługi żądań dotyczących lotniska
+     *
+     * @param airportRequest żądanie od klienta dotyczące danych z lotniksa
+     * @return  pobrane informacjie z bazy dotyczące lotniska
+     */
     private AirportResponse getAirportBase(AirportRequest airportRequest) {
         Iterable<Airport> airports = airportRepository.findAll();
         if (airports == null) {
@@ -110,6 +131,12 @@ public class AirportControlServer implements Serializable {
 
     ;
 
+    /**
+     * Metoda do obsługi żądań dotyczącej użykowników
+     *
+     * @param loginUserRequest żądanie od klienta dotyczące użykowników
+     * @return odpowiedź
+     */
     private LoginUserResponse getLoginUser(LoginUserRequest loginUserRequest) {
         User user = userRepository.findUserByEmail(loginUserRequest.getEmail());
 
@@ -126,6 +153,10 @@ public class AirportControlServer implements Serializable {
 
     }
 
+    /**
+     * @param createUserRequest
+     * @return
+     */
     private CreateUserResponse getCreateUserResponse(CreateUserRequest createUserRequest) {
         User user = new User();
 
@@ -191,8 +222,10 @@ public class AirportControlServer implements Serializable {
     }
 
     /**
-     * @param listFlightRequest
-     * @return
+     * Metoda do pobiera odpowiednie dane z bazy, określone w żądaniu i tworzy z nich odpowiedź dla klienta.
+     *
+     * @param listFlightRequest żądanie od klienta
+     * @return odpowiedź dla klienta dotycząca lotów
      */
     private ListFlightResponse getListFlightResponse(ListFlightRequest listFlightRequest) {
         Iterable<Flight> all = null;
@@ -210,9 +243,11 @@ public class AirportControlServer implements Serializable {
     }
 
     /**
-     * @param clientSocket
-     * @param out
-     * @param in
+     * Metoda zamyka połączenie z serwerem
+     *
+     * @param clientSocket socket serwera
+     * @param out          strumien wyjściowy serwera
+     * @param in           strumień wejściowy serwera
      * @throws IOException
      */
     private void close(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) throws IOException {

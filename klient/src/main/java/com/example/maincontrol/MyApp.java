@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
+/**
+ * Klasa głowna klienta uruchamia aplikacje klienta
+ */
 @Configuration
 @SpringBootApplication
 public class MyApp extends Application {

@@ -23,6 +23,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * klasa do obsługi tabeli z wyszukanymi lotami.
+ */
 @Controller
 @Component
 @Scope("prototype") // scope prototype oznacza, ze za kazdym razem gdy bedzie potrzebny obiekt tego typu
@@ -74,6 +77,12 @@ public class TableFlights implements Initializable {
         this.listFlightResponse = listFlightResponse;
     }
 
+    /**
+     * Metoda ładująca dane do elementów w GUI
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Flight> lista = null;
@@ -121,10 +130,22 @@ public class TableFlights implements Initializable {
 
     }
 
+    /**
+     * Metoda do ładowania stron elementów GUI.
+     *
+     * @param ui nazwa pliku fxml z danym
+     * @return zwraca załadowany elemnt
+     */
     private AnchorPane loadUi(String ui, ListFlightResponse listFlightResponse, Flight flight) {
         return (AnchorPane) springFxmlLoader.load(ui + ".fxml", listFlightResponse, flight);
     }
 
+    /**
+     * Metoda obsługuje przycisk do rezerwacji wybranego lotu,
+     * przenosi nas do menu, w którym wpisujemy dane użytkownika
+     *
+     * @param mouseEvent
+     */
     public void bookButton(javafx.scene.input.MouseEvent mouseEvent) {
         Flight chooseFlight = tableView.getSelectionModel().getSelectedItem();
         if (chooseFlight != null) {

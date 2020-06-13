@@ -9,12 +9,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * Klasa
+ */
 @Component
 public class ClientControl {
 
     private final static String IP_ADDRESS = "127.0.0.1";
     private final static int SERVER_PORT = 6666;
 
+    /**
+     * Metoda tworząca requesta dotyczącego lotów i wysyła go do serwera
+     * @param request żadanie do serwera
+     * @return zwraca wiadomość odebraną od serwera
+     */
     public ListFlightResponse listFlights(ListFlightRequest request) {
         ListFlightResponse listFlightResponse = (ListFlightResponse) send(request);
         if (listFlightResponse != null) {
@@ -27,28 +35,49 @@ public class ClientControl {
 
         return listFlightResponse;
     }
-
+    /**
+     * Metoda tworząca requesta dotyczącego rezerwacji i wysyła go do serwera
+     * @param request żadanie do serwera
+     * @return zwraca wiadomość odebraną od serwera
+     */
     public CreateReservationResponse createReservation(CreateReservationRequest request) {
         CreateReservationResponse createReservationResponse = (CreateReservationResponse) send(request);
         System.out.println("CreateReservationResponse message: " + createReservationResponse.getStatus());
         return createReservationResponse;
     }
 
+    /**
+     * Metoda tworząca requesta dotyczącego logownia użytkownika i wysyła go do serwera
+     * @param loginUserRequest żadanie do serwera
+     * @return zwraca wiadomość odebraną od serwera
+     */
     public LoginUserResponse loginUser(LoginUserRequest loginUserRequest) {
         LoginUserResponse loginUserResponse = (LoginUserResponse) send(loginUserRequest);
         return loginUserResponse;
     }
-
+    /**
+     * Metoda tworząca requesta dotyczącego rezerwacji użytkownika i wysyła go do serwera
+     * @param request żadanie do serwera
+     * @return zwraca wiadomość odebraną od serwera
+     */
     public CreateUserResponse registerUser(CreateUserRequest request) {
         CreateUserResponse createUserResponse = (CreateUserResponse) send(request);
         return createUserResponse;
     }
-
+    /**
+     * Metoda tworząca requesta dotyczącego lotnisk i wysyła go do serwera
+     * @param request żadanie do serwera
+     * @return zwraca wiadomość odebraną od serwera
+     */
     public AirportResponse getAirports(AirportRequest request) {
         AirportResponse airportResponse = (AirportResponse) send(request);
         return airportResponse;
     }
-
+    /**
+     * Metoda tworząca requesta dotyczącego wyszukania rezerwacji i wysyła go do serwera
+     * @param request żadanie do serwera
+     * @return zwraca wiadomość odebraną od serwera
+     */
     public FindReservationResponse findReservation(FindReservationRequest request) {
         FindReservationResponse findReservationResponse = (FindReservationResponse) send(request);
         return findReservationResponse;
@@ -84,6 +113,12 @@ public class ClientControl {
         return null;
     }
 
+    /**
+     * Metoda zamyka socket oraz strumienie w kliencie
+     * @param clientSocket socket klienta
+     * @param out strumień wyjścia
+     * @param in strumień wejścia
+     */
     private void closeConnection(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) {
         try {
             if (in != null) {

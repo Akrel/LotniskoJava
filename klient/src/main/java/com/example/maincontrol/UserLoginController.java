@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+/**
+ * Klasa do obsługi panelu logowania użytkownika
+ */
 @Controller
 @Component
 public class UserLoginController implements InitializingBean {
@@ -37,6 +40,12 @@ public class UserLoginController implements InitializingBean {
 
     }
 
+    /**
+     * Metoda do obsługi przycisku logowania
+     * Pobiera i sprawdza pola
+     * Tworzy żądanie do serwera z pobranymi danymi i porównywane 
+     * @param mouseEvent
+     */
     public void logButton(MouseEvent mouseEvent) {
 
         if (!logEmail.getText().isEmpty()) {

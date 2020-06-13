@@ -60,6 +60,12 @@ public class MyAppController implements Initializable, InitializingBean {
         this.buttonPanelClient = buttonPanelClient;
     }
 
+    /**
+     * Metoda do obsługi przycisku  menu logowania
+     * @param event
+     * @throws IOException
+     */
+
     @FXML
     public void loginUserButton(MouseEvent event) throws IOException {
         if (!mainLoad.getChildren().isEmpty()) {
@@ -72,6 +78,11 @@ public class MyAppController implements Initializable, InitializingBean {
         hideAllSliderMenu();
     }
 
+    /**
+     * Metoda do obsługi przycisku wyszukiwania lotow
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void goFlights(ActionEvent event) throws IOException {
 
@@ -85,6 +96,10 @@ public class MyAppController implements Initializable, InitializingBean {
         hideAllSliderMenu();
     }
 
+    /**
+     * Metoda do obsługi przycisku rejestracji użytkownika
+     * @param event
+     */
     @FXML
     void goCreateAccount(MouseEvent event) {
         if (!mainLoad.getChildren().isEmpty()) {
@@ -104,7 +119,10 @@ public class MyAppController implements Initializable, InitializingBean {
         SceneX = event.getSceneX();
         SceneY = event.getSceneY();
     }
-
+    /**
+     * Metoda pozwala na przeciąganie okna.
+     * @param event
+     */
     @FXML
     void draged(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -112,7 +130,10 @@ public class MyAppController implements Initializable, InitializingBean {
         stage.setY(event.getScreenY() - SceneY);
     }
 
-
+    /**
+     * Metoda do obsługi przycisku minimalizacji okna aplikacji.
+     * @param event
+     */
     @FXML
     void min(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -120,6 +141,10 @@ public class MyAppController implements Initializable, InitializingBean {
 
     }
 
+    /**
+     * Metoda do obsługi przycisku zamknięcia okna aplikacji.
+     * @param event
+     */
     @FXML
     void close(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -150,6 +175,9 @@ public class MyAppController implements Initializable, InitializingBean {
         });
     }
 
+    /**
+     * Metoda obsługująca chowanie się menu dla użytkownika
+     */
 
     public void userSlideBarHide() {
         buttonUser.getStyleClass().remove("side-button-active");
@@ -159,7 +187,9 @@ public class MyAppController implements Initializable, InitializingBean {
 
     }
 
-
+    /**
+     * Metoda obsługująca wysuwania się menu dla użytkownika
+     */
     public void buttonUserHover() {
         if ((vUserSlideBox.getTranslateX()) == -(vUserSlideBox.getWidth())) {
             buttonUser.getStyleClass().remove("side-button");
@@ -196,6 +226,10 @@ public class MyAppController implements Initializable, InitializingBean {
         this.loggedInUser = loggedInUser;
     }
 
+    /**
+     * Metoda do obsługi przycisku, który otwiera panel użytkownika
+     * @param mouseEvent
+     */
     public void clientPanelButton(MouseEvent mouseEvent) {
         if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();

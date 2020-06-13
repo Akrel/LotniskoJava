@@ -29,6 +29,10 @@ import org.springframework.stereotype.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Klasa obsłgująca rezerwacje biletów.
+ *
+ */
 
 @Controller
 @Component
@@ -68,7 +72,11 @@ public class BookFlight implements Initializable {
 
     private Flight flight;
 
-
+    /**
+     *  Konstruktor klasy BookFlight
+     * @param listFlightResponse
+     * @param flight wybrany lot
+     */
     BookFlight(ListFlightResponse listFlightResponse, Flight flight) {
         this.flight = flight;
         this.listFlightResponse = listFlightResponse;
@@ -128,6 +136,10 @@ public class BookFlight implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param mouseEvent
+     */
     public void backButton(MouseEvent mouseEvent) {
         if (!myAppController.getMainLoad().getChildren().isEmpty()) {
             myAppController.getMainLoad().getChildren().clear();

@@ -24,6 +24,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Klasa do obsługi panelu użytkownika.
+ */
 @Controller
 @Component
 public class UserPanel implements InitializingBean, Initializable {

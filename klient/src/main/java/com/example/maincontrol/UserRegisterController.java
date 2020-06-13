@@ -16,6 +16,9 @@ import org.springframework.stereotype.Controller;
 
 import java.util.regex.Pattern;
 
+/**
+ * Klasa do obsługi pranelu rejestracji.
+ */
 @Controller
 @Component
 public class UserRegisterController implements InitializingBean {
@@ -57,6 +60,13 @@ public class UserRegisterController implements InitializingBean {
 
     }
 
+    /**
+     * Metoda do obsługi przycisku tworzenia konta klienta
+     * Sprawdzane są w niej dane pobierane z pól.
+     * Tworzy request do serwera aby utworzyć nowego użytkownika.
+     *
+     * @param mouseEvent
+     */
     public void clickCreateAccount(javafx.scene.input.MouseEvent mouseEvent) {
         waringField.setText("");
         Boolean check = false;
@@ -115,6 +125,12 @@ public class UserRegisterController implements InitializingBean {
 
     }
 
+    /**
+     * Metoda do walidacji emaili
+     *
+     * @param email adres email jak string
+     * @return zwaraca true jeśli email jest zgodny z paternem
+     */
     public static boolean isValid(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
                 "[a-zA-Z0-9_+&*-]+)*@" +
@@ -127,17 +143,28 @@ public class UserRegisterController implements InitializingBean {
         return pat.matcher(email).matches();
     }
 
+    /**
+     * Metoda do obsługi przycisku cancel, przechodzi do panelu klienta
+     *
+     * @param mouseEvent
+     */
     public void clickCancel(javafx.scene.input.MouseEvent mouseEvent) {
         if (!myAppController.getMainLoad().getChildren().isEmpty()) {
             myAppController.getMainLoad().getChildren().clear();
         }
-        AnchorPane root = loadUi("/userLogin");
+        AnchorPane root = loadUi("/userPanel");
         AnchorPane.setLeftAnchor(root, 210d);
         myAppController.getMainLoad().getChildren().add(root);
 
         myAppController.hideAllSliderMenu();
     }
 
+    /**
+     * Metoda do ładowania stron elementów GUI.
+     *
+     * @param ui nazwa pliku fxml z danym
+     * @return zwraca załadowany elemnt
+     */
     private AnchorPane loadUi(String ui) {
         return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
     }

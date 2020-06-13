@@ -24,6 +24,9 @@ import org.springframework.stereotype.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Klasa obsługująca wyszukiwanie lotów.
+ */
 @Controller
 @Component
 public class SearchFlightController implements InitializingBean, Initializable {
@@ -53,10 +56,10 @@ public class SearchFlightController implements InitializingBean, Initializable {
     static ObservableList<String> list = FXCollections.observableArrayList("Krakow", "Gdansk", "Katowice", "Radom");
 
 
-    private AnchorPane loadUi(String ui, ListFlightResponse listFlightResponse) {
-        return (AnchorPane) springFxmlLoader.load(ui + ".fxml", listFlightResponse);
-    }
-
+    /**
+     * Metoda obłsługuje przycisk do wyszukiwania lotów
+     * @param actionEvent
+     */
     public void searchButton(javafx.event.ActionEvent actionEvent) {
         if (!myAppController.getMainLoad().getChildren().isEmpty()) {
             myAppController.getMainLoad().getChildren().clear();
@@ -106,5 +109,9 @@ public class SearchFlightController implements InitializingBean, Initializable {
 
         fromLabel.setItems(listCity);
         destinationLabel.setItems(listCity);
+    }
+
+    private AnchorPane loadUi(String ui, ListFlightResponse listFlightResponse) {
+        return (AnchorPane) springFxmlLoader.load(ui + ".fxml", listFlightResponse);
     }
 }
