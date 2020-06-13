@@ -13,6 +13,28 @@ public class CreateUserRequest implements Serializable {
 
     private String password;
 
+    private Integer id;
+
+    private String type;
+
+    public String getTypeCreate() {
+        return type;
+    }
+
+    public void setTypeCreate(String type) {
+        this.type = type;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+
+
     public String getName() {
         return name;
     }

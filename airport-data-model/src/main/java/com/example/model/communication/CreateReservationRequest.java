@@ -6,8 +6,6 @@ import com.example.model.database.User;
 import java.io.Serializable;
 
 public class CreateReservationRequest implements Serializable {
-
-
     private User user;
     private int flightId;
     private String passengerName;

@@ -43,6 +43,15 @@ public class ClientControl {
         return createUserResponse;
     }
 
+    public AirportResponse getAirports (AirportRequest request) {
+        AirportResponse airportResponse = (AirportResponse) send(request);
+        return airportResponse;
+    }
+
+    public FindReservationResponse findReservation(FindReservationRequest request) {
+        FindReservationResponse findReservationResponse = (FindReservationResponse) send(request);
+        return findReservationResponse;
+    }
 
     /**
      * Metoda obsługująca generyczne wysyłanie requestów i odbieranie responsów.

@@ -2,8 +2,6 @@ package com.example.maincontrol;
 
 import com.example.model.communication.CreateUserRequest;
 import com.example.model.communication.CreateUserResponse;
-import com.example.model.communication.LoginUserRequest;
-import com.example.model.communication.LoginUserResponse;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -53,30 +51,41 @@ public class EditPanel implements InitializingBean, Initializable {
 
     @FXML
     private Text infoLabel;
+    final String passRegEx = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,15}$";
+    final String phoneRegEx = "(?:\\d{3}-){2}\\d{4}";
 
 
     public void confirmButton(MouseEvent mouseEvent) {
         infoLabel.setText("");
         Boolean check = false;
         check = isValid(emailLabel.toString());
+
         if (!nameLabel.getText().isEmpty()) {
             if (!surnameLabel.getText().isEmpty()) {
                 if (!emailLabel.getText().isEmpty()) {
                     if (!check) {
                         if (!phoneLabel.getText().isEmpty()) {
-                            CreateUserRequest createUserRequest = new CreateUserRequest();
-                            createUserRequest.setName(nameLabel.getText());
-                            createUserRequest.setSurname(surnameLabel.getText());
-                            createUserRequest.setPhone(phoneLabel.getText());
-                            createUserRequest.setEmail(emailLabel.getText());
-                            createUserRequest.setPassword(myAppController.getLoggedInUser().getPassword());
-                            CreateUserResponse createUserResponse = clientControl.registerUser(createUserRequest);
-                            infoLabel.setText(createUserResponse.getStatus());
-                            LoginUserRequest loginUserRequest = new LoginUserRequest();
-                            loginUserRequest.setEmail(emailLabel.getText());
-                            LoginUserResponse loginUserResponse = clientControl.loginUser(loginUserRequest);
-                            myAppController.setLoggedInUser(loginUserResponse.getUser());
-                            //initialize();
+                            if (!phoneLabel.getText().matches(phoneRegEx)) {
+                                if (passwordLabel.getText().isEmpty() & confirmPasswordLabel.getText().isEmpty()) {
+                                    createEditRequest(true);
+
+
+                                } else {
+                                        if (passwordLabel.getText().matches(passRegEx)) {
+                                        if (confirmPasswordLabel.getText().equals(passwordLabel.getText())) {
+                                            createEditRequest(false);
+                                        } else {
+                                                infoLabel.setText("Invalid Password ");
+                                            }
+
+                                        } else{
+                                            infoLabel.setText("Empty Password");
+                                        }
+                                        }
+
+                            } else {
+                                infoLabel.setText("Bad format phone number, format is 000 000 000");
+                            }
                         } else {
                             infoLabel.setText("Empty phone number");
                         }
@@ -85,6 +94,7 @@ public class EditPanel implements InitializingBean, Initializable {
                     }
                 } else {
                     infoLabel.setText("Empty email");
+
                 }
             } else {
                 infoLabel.setText("Empty surname");
@@ -92,6 +102,8 @@ public class EditPanel implements InitializingBean, Initializable {
         } else {
             infoLabel.setText("Empty name");
         }
+
+        this.initialize(null,null);
     }
 
     public void backButton(MouseEvent mouseEvent) {
@@ -134,4 +146,30 @@ public class EditPanel implements InitializingBean, Initializable {
             return false;
         return pat.matcher(email).matches();
     }
+
+   public void createEditRequest(boolean checkPassw)
+    {
+
+        CreateUserRequest createUserRequest = new CreateUserRequest();
+        CreateUserResponse createUserResponse = null;
+        createUserRequest.setId(myAppController.getLoggedInUser().getId());
+        createUserRequest.setName(nameLabel.getText());
+        createUserRequest.setSurname(surnameLabel.getText());
+        createUserRequest.setPhone(phoneLabel.getText());
+        createUserRequest.setEmail(emailLabel.getText());
+        createUserRequest.setTypeCreate("edit");
+        createUserRequest.setPassword(myAppController.getLoggedInUser().getPassword());
+        if(!checkPassw)
+        {
+            createUserRequest.setPassword(passwordLabel.getText());
+            createUserResponse = clientControl.registerUser(createUserRequest);
+
+        }
+        createUserResponse = clientControl.registerUser(createUserRequest);
+       
+        infoLabel.setText(createUserResponse.getStatus());
+        myAppController.setLoggedInUser(createUserResponse.getUser());
+    }
+
+
 }

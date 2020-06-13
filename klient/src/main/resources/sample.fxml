@@ -32,7 +32,7 @@
                         <Font name="Gadugi Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="buttonPanelClient"  onMouseClicked="#clientPanelButton" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #5aa6d6;" text="CLIENT PANEL" textFill="#322d2d">
+                  <JFXButton fx:id="buttonPanelClient" onMouseClicked="#clientPanelButton" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #5aa6d6;" text="CLIENT PANEL" textFill="#322d2d">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

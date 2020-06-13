@@ -32,10 +32,9 @@ import java.util.ResourceBundle;
 
 @Controller
 @Component
-
 @Scope("prototype")
 public class BookFlight implements Initializable {
-    Logger logger =  LoggerFactory.getLogger(BookFlight.class);
+    Logger logger = LoggerFactory.getLogger(BookFlight.class);
     @Autowired
     MyAppController myAppController;
 
@@ -70,7 +69,6 @@ public class BookFlight implements Initializable {
     private Flight flight;
 
 
-
     BookFlight(ListFlightResponse listFlightResponse, Flight flight) {
         this.flight = flight;
         this.listFlightResponse = listFlightResponse;
@@ -97,8 +95,7 @@ public class BookFlight implements Initializable {
 
 
         User loggedInUser = myAppController.getLoggedInUser();
-        if(loggedInUser != null)
-        {
+        if (loggedInUser != null) {
             nameField.setText(loggedInUser.getName());
             surnameField.setText(loggedInUser.getSurname());
         }
@@ -110,8 +107,7 @@ public class BookFlight implements Initializable {
 
         if (nameField.getText().isEmpty() || surnameField.getText().isEmpty()) {
             infoLabel.setText("FILL ALL FIELDS");
-        }
-        else {
+        } else {
             infoLabel.setText("");
             CreateReservationRequest request = new CreateReservationRequest();
             User user = myAppController.getLoggedInUser();
@@ -121,8 +117,7 @@ public class BookFlight implements Initializable {
             request.setPassengerName(nameField.getText());
             request.setPassengerSurname(surnameField.getText());
             User loggedInUser = myAppController.getLoggedInUser();
-            if(loggedInUser != null)
-            {
+            if (loggedInUser != null) {
                 request.setUser(loggedInUser);
             }
 
@@ -130,7 +125,7 @@ public class BookFlight implements Initializable {
             logger.info(request.getPassengerSurname());
             CreateReservationResponse reservationResponse = clientControl.createReservation(request);
             infoLabel.setText(reservationResponse.getStatus());
-                   }
+        }
     }
 
     public void backButton(MouseEvent mouseEvent) {

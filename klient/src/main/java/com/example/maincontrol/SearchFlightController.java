@@ -1,7 +1,11 @@
 package com.example.maincontrol;
 
+import com.example.model.communication.AirportRequest;
+import com.example.model.communication.AirportResponse;
 import com.example.model.communication.ListFlightRequest;
 import com.example.model.communication.ListFlightResponse;
+import com.example.model.database.Airport;
+import com.example.model.database.Flight;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import javafx.collections.FXCollections;
@@ -19,6 +23,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 @Controller
@@ -92,7 +97,17 @@ public class SearchFlightController implements InitializingBean, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fromLabel.setItems(list);
-        destinationLabel.setItems(list);
+        ObservableList<String> listCity = FXCollections.observableArrayList();
+        AirportRequest request = new AirportRequest();
+        AirportResponse airportResponse = clientControl.getAirports(request);
+        Iterable<Airport> cityAirport = airportResponse.getListOfAirport();
+        logger.info(airportResponse.getStatus());
+        for(Airport t : cityAirport)
+        {
+                    listCity.add(t.getCity());
+        }
+
+        fromLabel.setItems(listCity);
+        destinationLabel.setItems(listCity);
     }
 }

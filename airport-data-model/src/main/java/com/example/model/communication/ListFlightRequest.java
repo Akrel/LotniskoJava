@@ -8,6 +8,15 @@ public class ListFlightRequest implements Serializable {
     private String destination;
     private Date departureDate;
     private Date arrivalDate;
+    private int userId;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
 
     public String getOrigin() {
         return origin;

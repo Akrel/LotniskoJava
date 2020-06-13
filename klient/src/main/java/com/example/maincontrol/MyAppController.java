@@ -26,6 +26,9 @@ import java.util.ResourceBundle;
 @Component
 public class MyAppController implements Initializable, InitializingBean {
 
+
+
+    public JFXButton buttonPanelClient;
     @Autowired
     SpringFxmlLoader springFxmlLoader;
 
@@ -40,7 +43,7 @@ public class MyAppController implements Initializable, InitializingBean {
     public AnchorPane mainLoad;
     public VBox vUserSlideBox;
     private boolean initialized = false;
-    private JFXButton buttonPanelClient;
+    
 
     private User loggedInUser;
 
@@ -48,6 +51,14 @@ public class MyAppController implements Initializable, InitializingBean {
     public void hideAllSliderMenu() {
 
         userSlideBarHide();
+    }
+
+    public JFXButton getButtonPanelClient() {
+        return buttonPanelClient;
+    }
+
+    public void setButtonPanelClient(JFXButton buttonPanelClient) {
+        this.buttonPanelClient = buttonPanelClient;
     }
 
     @FXML
@@ -128,7 +139,7 @@ public class MyAppController implements Initializable, InitializingBean {
         buttonUser.setOnAction((ActionEvent event) -> {
             buttonUserHover();
         });
-
+        buttonPanelClient.setDisable(true);
 
         Platform.runLater(new Runnable() {
             @Override
@@ -161,6 +172,7 @@ public class MyAppController implements Initializable, InitializingBean {
         }
 
     }
+
 
     private AnchorPane loadUi(String ui) {
         AnchorPane root = (AnchorPane) springFxmlLoader.load(ui + ".fxml");
