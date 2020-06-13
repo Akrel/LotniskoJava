@@ -33,6 +33,7 @@ public class ClientControl {
         System.out.println("CreateReservationResponse message: " + createReservationResponse.getStatus());
         return createReservationResponse;
     }
+
     public LoginUserResponse loginUser(LoginUserRequest loginUserRequest) {
         LoginUserResponse loginUserResponse = (LoginUserResponse) send(loginUserRequest);
         return loginUserResponse;
@@ -43,7 +44,7 @@ public class ClientControl {
         return createUserResponse;
     }
 
-    public AirportResponse getAirports (AirportRequest request) {
+    public AirportResponse getAirports(AirportRequest request) {
         AirportResponse airportResponse = (AirportResponse) send(request);
         return airportResponse;
     }

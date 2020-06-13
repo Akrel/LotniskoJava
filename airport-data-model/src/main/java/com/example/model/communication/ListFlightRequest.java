@@ -9,6 +9,7 @@ public class ListFlightRequest implements Serializable {
     private Date departureDate;
     private Date arrivalDate;
     private int userId;
+
     public int getUserId() {
         return userId;
     }

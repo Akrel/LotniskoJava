@@ -2,9 +2,6 @@ package com.example.maincontrol;
 
 import com.example.model.communication.FindReservationRequest;
 import com.example.model.communication.FindReservationResponse;
-import com.example.model.communication.ListFlightRequest;
-import com.example.model.communication.ListFlightResponse;
-import com.example.model.database.Flight;
 import com.example.model.database.Reservation;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -23,7 +20,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -53,7 +49,7 @@ public class UserPanel implements InitializingBean, Initializable {
     @FXML
     private TableColumn<Reservation, Date> dateDepartureLabel;
     @FXML
-    private TableColumn<Reservation,String> sourceCityLabel;
+    private TableColumn<Reservation, String> sourceCityLabel;
     @FXML
     private TableColumn<Reservation, Date> dateArrivalLabel;
     @FXML
@@ -75,9 +71,6 @@ public class UserPanel implements InitializingBean, Initializable {
         AnchorPane.setLeftAnchor(root, 110d);
         myAppController.hideAllSliderMenu();
     }
-
-
-
 
 
     @Override
@@ -113,20 +106,18 @@ public class UserPanel implements InitializingBean, Initializable {
                 return new ReadOnlyObjectWrapper(param.getValue().getFlight().getOrigin().getCity());
             }
         });
-                dateArrivalLabel.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Reservation, Date>, ObservableValue<Date>>() {
-                    @Override
-                    public ObservableValue<Date> call(TableColumn.CellDataFeatures<Reservation, Date> param) {
-                        return new ReadOnlyObjectWrapper(param.getValue().getFlight().getDateArrival());
-                    }
-                });
+        dateArrivalLabel.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Reservation, Date>, ObservableValue<Date>>() {
+            @Override
+            public ObservableValue<Date> call(TableColumn.CellDataFeatures<Reservation, Date> param) {
+                return new ReadOnlyObjectWrapper(param.getValue().getFlight().getDateArrival());
+            }
+        });
         priceLabel.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Reservation, Integer>, ObservableValue<Integer>>() {
             @Override
             public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Reservation, Integer> param) {
                 return new ReadOnlyObjectWrapper(param.getValue().getFlight().getPrice());
             }
         });
-
-
 
 
         tableFlight.setItems(list);

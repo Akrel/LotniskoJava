@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 public class MyAppController implements Initializable, InitializingBean {
 
 
-
     public JFXButton buttonPanelClient;
     @Autowired
     SpringFxmlLoader springFxmlLoader;
@@ -43,7 +42,7 @@ public class MyAppController implements Initializable, InitializingBean {
     public AnchorPane mainLoad;
     public VBox vUserSlideBox;
     private boolean initialized = false;
-    
+
 
     private User loggedInUser;
 
@@ -186,7 +185,6 @@ public class MyAppController implements Initializable, InitializingBean {
     public AnchorPane getMainLoad() {
         return mainLoad;
     }
-
 
 
     public User getLoggedInUser() {

@@ -1,6 +1,5 @@
 package com.example.maincontrol;
 
-import com.example.model.database.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -96,49 +96,49 @@ public class UserRegisterController implements InitializingBean {
                             } else {
                                 waringField.setText("Bad format phone number, format is 000 000 000");
                             }
-                            } else {
-                                waringField.setText("Empty phone number");
-                            }
                         } else {
-                            waringField.setText("Bad email");
+                            waringField.setText("Empty phone number");
                         }
                     } else {
-                        waringField.setText("Empty email");
-
+                        waringField.setText("Bad email");
                     }
                 } else {
-                    waringField.setText("Empty surname");
+                    waringField.setText("Empty email");
+
                 }
             } else {
-                waringField.setText("Empty name");
+                waringField.setText("Empty surname");
             }
-
+        } else {
+            waringField.setText("Empty name");
         }
 
-        public static boolean isValid (String email){
-            String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
-                    "[a-zA-Z0-9_+&*-]+)*@" +
-                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                    "A-Z]{2,7}$";
-
-            Pattern pat = Pattern.compile(emailRegex);
-            if (email == null)
-                return false;
-            return pat.matcher(email).matches();
-        }
-
-        public void clickCancel (javafx.scene.input.MouseEvent mouseEvent){
-            if (!myAppController.getMainLoad().getChildren().isEmpty()) {
-                myAppController.getMainLoad().getChildren().clear();
-            }
-            AnchorPane root = loadUi("/userLogin");
-            AnchorPane.setLeftAnchor(root, 210d);
-            myAppController.getMainLoad().getChildren().add(root);
-
-            myAppController.hideAllSliderMenu();
-        }
-
-        private AnchorPane loadUi (String ui){
-            return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
-        }
     }
+
+    public static boolean isValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
+
+    public void clickCancel(javafx.scene.input.MouseEvent mouseEvent) {
+        if (!myAppController.getMainLoad().getChildren().isEmpty()) {
+            myAppController.getMainLoad().getChildren().clear();
+        }
+        AnchorPane root = loadUi("/userLogin");
+        AnchorPane.setLeftAnchor(root, 210d);
+        myAppController.getMainLoad().getChildren().add(root);
+
+        myAppController.hideAllSliderMenu();
+    }
+
+    private AnchorPane loadUi(String ui) {
+        return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
+    }
+}

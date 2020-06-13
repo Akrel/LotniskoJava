@@ -1,141 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane fx:id="mainAnchorReg" maxHeight="566.0" prefHeight="528.0" prefWidth="355.0" style="-fx-background-color: #E1F7FA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.UserRegisterController">
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane fx:id="mainAnchorReg" maxHeight="566.0" prefHeight="528.0" prefWidth="355.0"
+            style="-fx-background-color: #E1F7FA;" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.UserRegisterController">
     <children>
-        <VBox fx:id="mainVboxReg" layoutX="100.0" prefHeight="528.0" prefWidth="393.0" style="-fx-background-color: #11437d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox fx:id="mainVboxReg" layoutX="100.0" prefHeight="528.0" prefWidth="393.0"
+              style="-fx-background-color: #11437d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Label text="NAME" textFill="WHITE">
                     <VBox.margin>
-                        <Insets bottom="2.0" left="35.0" top="30.0" />
+                        <Insets bottom="2.0" left="35.0" top="30.0"/>
                     </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
                 </Label>
-                <JFXTextField fx:id="filedName" prefHeight="30.0" prefWidth="0.0" promptText="Your Name" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
+                <JFXTextField fx:id="filedName" prefHeight="30.0" prefWidth="0.0" promptText="Your Name"
+                              style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                     <VBox.margin>
-                        <Insets left="50.0" right="40.0" />
+                        <Insets left="50.0" right="40.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <Label text="SURNAME" textFill="WHITE">
                     <VBox.margin>
-                        <Insets bottom="2.0" left="30.0" />
+                        <Insets bottom="2.0" left="30.0"/>
                     </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
                 </Label>
-                <JFXTextField fx:id="fieldSurname" prefHeight="30.0" prefWidth="180.0" promptText="Your Surname" style="-fx-background-color: white;">
+                <JFXTextField fx:id="fieldSurname" prefHeight="30.0" prefWidth="180.0" promptText="Your Surname"
+                              style="-fx-background-color: white;">
                     <VBox.margin>
-                        <Insets left="50.0" right="40.0" />
+                        <Insets left="50.0" right="40.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <Label text="EMAIL" textFill="WHITE">
                     <VBox.margin>
-                        <Insets bottom="2.0" left="30.0" />
+                        <Insets bottom="2.0" left="30.0"/>
                     </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
                 </Label>
-                <JFXTextField fx:id="fieldEmail" prefHeight="30.0" prefWidth="200.0" promptText="Your Email" style="-fx-background-color: white;">
+                <JFXTextField fx:id="fieldEmail" prefHeight="30.0" prefWidth="200.0" promptText="Your Email"
+                              style="-fx-background-color: white;">
                     <VBox.margin>
-                        <Insets left="50.0" right="40.0" />
+                        <Insets left="50.0" right="40.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <Label text="PHONE NUMBER" textFill="WHITE">
                     <VBox.margin>
-                        <Insets bottom="2.0" left="30.0" />
+                        <Insets bottom="2.0" left="30.0"/>
                     </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
                 </Label>
-                <JFXTextField fx:id="fieldPhone" prefHeight="30.0" prefWidth="200.0" promptText="Your Phone number" style="-fx-background-color: white;">
+                <JFXTextField fx:id="fieldPhone" prefHeight="30.0" prefWidth="200.0" promptText="Your Phone number"
+                              style="-fx-background-color: white;">
                     <VBox.margin>
-                        <Insets left="50.0" right="40.0" />
+                        <Insets left="50.0" right="40.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <Label text="PASSWORD" textFill="WHITE">
                     <VBox.margin>
-                        <Insets bottom="2.0" left="30.0" />
+                        <Insets bottom="2.0" left="30.0"/>
                     </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
                 </Label>
-                <JFXPasswordField fx:id="fieldPassword" prefHeight="30.0" prefWidth="200.0" promptText="Your password" style="-fx-background-color: white;">
+                <JFXPasswordField fx:id="fieldPassword" prefHeight="30.0" prefWidth="200.0" promptText="Your password"
+                                  style="-fx-background-color: white;">
                     <VBox.margin>
-                        <Insets left="50.0" right="40.0" />
+                        <Insets left="50.0" right="40.0"/>
                     </VBox.margin>
                 </JFXPasswordField>
                 <Label text="RE_TYPE PASSWORD" textFill="WHITE">
                     <VBox.margin>
-                        <Insets bottom="2.0" left="30.0" />
+                        <Insets bottom="2.0" left="30.0"/>
                     </VBox.margin>
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="14.0"/>
                     </font>
                 </Label>
-                <JFXPasswordField fx:id="fieldRePass" alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0" promptText="Re-type Your Password" style="-fx-background-color: white;">
+                <JFXPasswordField fx:id="fieldRePass" alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0"
+                                  promptText="Re-type Your Password" style="-fx-background-color: white;">
                     <VBox.margin>
-                        <Insets left="50.0" right="40.0" />
+                        <Insets left="50.0" right="40.0"/>
                     </VBox.margin>
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </JFXPasswordField>
-                <CheckBox fx:id="checkBox" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="19.0" prefWidth="253.0" text="I agree all statments in Terms of service" textFill="WHITE">
+                <CheckBox fx:id="checkBox" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="19.0"
+                          prefWidth="253.0" text="I agree all statments in Terms of service" textFill="WHITE">
                     <VBox.margin>
-                        <Insets left="50.0" top="20.0" />
+                        <Insets left="50.0" top="20.0"/>
                     </VBox.margin>
-               <font>
-                  <Font size="13.0" />
-               </font>
+                    <font>
+                        <Font size="13.0"/>
+                    </font>
                 </CheckBox>
-            <Text fx:id="waringField" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="271.13671875">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="55.0" top="10.0" />
-               </VBox.margin>
-            </Text>
-            <HBox fx:id="boxButton" prefHeight="86.0" prefWidth="340.0">
-               <children>
-                      <JFXButton fx:id="buttonCancel" onMouseClicked="#clickCancel" prefHeight="50.0" prefWidth="131.0" style="-fx-background-color: #d91818;" text="CANCEL" textFill="WHITE">
-                          <font>
-                              <Font name="System Bold" size="14.0" />
-                          </font>
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="35.0" right="20.0" top="18.0" />
-                     </HBox.margin>
-                      </JFXButton>
-                      <JFXButton fx:id="buttonCreate" onMouseClicked="#clickCreateAccount" prefHeight="50.0" prefWidth="144.0" style="-fx-background-color: #0b852c;" text="CREATE ACCOUNT" textFill="WHITE">
-                          <font>
-                              <Font name="System Bold" size="14.0" />
-                          </font>
-                     <HBox.margin>
-                        <Insets bottom="5.0" right="10.0" top="18.0" />
-                     </HBox.margin>
-                      </JFXButton>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
+                <Text fx:id="waringField" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
+                      wrappingWidth="271.13671875">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="55.0" top="10.0"/>
+                    </VBox.margin>
+                </Text>
+                <HBox fx:id="boxButton" prefHeight="86.0" prefWidth="340.0">
+                    <children>
+                        <JFXButton fx:id="buttonCancel" onMouseClicked="#clickCancel" prefHeight="50.0"
+                                   prefWidth="131.0" style="-fx-background-color: #d91818;" text="CANCEL"
+                                   textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="35.0" right="20.0" top="18.0"/>
+                            </HBox.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="buttonCreate" onMouseClicked="#clickCreateAccount" prefHeight="50.0"
+                                   prefWidth="144.0" style="-fx-background-color: #0b852c;" text="CREATE ACCOUNT"
+                                   textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="5.0" right="10.0" top="18.0"/>
+                            </HBox.margin>
+                        </JFXButton>
+                    </children>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </HBox>
             </children>
         </VBox>
     </children>

@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="473.0" prefWidth="850.0" style="-fx-background-color: #E1F7FA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.TableFlights">
     <children>
-        <TableView fx:id="tableView" layoutX="37.0" layoutY="28.0" prefHeight="292.0" prefWidth="833.0">
-            <columns>
-                <TableColumn fx:id="countryColumn" maxWidth="150.0" minWidth="90.0" prefWidth="90.0" resizable="false" text="COUNTRY" />
-                <TableColumn fx:id="cityDestinationColumn" maxWidth="196.0" minWidth="78.0" prefWidth="120.0" resizable="false" text="CITY DESTINATION" />
-                <TableColumn fx:id="dateDepartureColumn" maxWidth="229.0" minWidth="107.0" prefWidth="129.0" resizable="false" text="DATE DEPARTURE" />
-                <TableColumn fx:id="countrySourceColumn" maxWidth="169.0" minWidth="90.0" prefWidth="118.0" resizable="false" text="COUNTRY SOURCE" />
-                <TableColumn fx:id="priceColumn" maxWidth="150.0" minWidth="61.0" prefWidth="62.0" resizable="false" text="PRICE" />
-            <TableColumn fx:id="numberSeatsColumn" prefWidth="95.0" resizable="false" text="NUMBER SEATS" />
-            <TableColumn fx:id="dateArrivalColumn" prefWidth="129.0" resizable="false" text="DATE ARRIVAL" />
-            <TableColumn fx:id="citySourceColumn" maxWidth="150.0" prefWidth="89.0" resizable="false" text="CITY SOURCE" />
-            </columns>
-        </TableView>
-        <JFXButton layoutX="676.0" layoutY="389.0" onMouseClicked="#bookButton" prefHeight="70.0" prefWidth="187.0" style="-fx-background-color: green;" text="BOOK" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="24.0" />
-            </font>
-        </JFXButton>
+      <VBox layoutX="396.0" layoutY="259.0" prefHeight="473.0" prefWidth="863.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+              <TableView fx:id="tableView" prefHeight="292.0" prefWidth="833.0">
+                  <columns>
+                      <TableColumn fx:id="countryColumn" maxWidth="150.0" minWidth="90.0" prefWidth="90.0" resizable="false" text="COUNTRY" />
+                      <TableColumn fx:id="cityDestinationColumn" maxWidth="196.0" minWidth="78.0" prefWidth="120.0" resizable="false" text="CITY DESTINATION" />
+                      <TableColumn fx:id="dateDepartureColumn" maxWidth="229.0" minWidth="107.0" prefWidth="129.0" resizable="false" text="DATE DEPARTURE" />
+                      <TableColumn fx:id="countrySourceColumn" maxWidth="169.0" minWidth="90.0" prefWidth="118.0" resizable="false" text="COUNTRY SOURCE" />
+                      <TableColumn fx:id="priceColumn" maxWidth="150.0" minWidth="61.0" prefWidth="62.0" resizable="false" text="PRICE" />
+                  <TableColumn fx:id="numberSeatsColumn" prefWidth="95.0" resizable="false" text="NUMBER SEATS" />
+                  <TableColumn fx:id="dateArrivalColumn" prefWidth="129.0" resizable="false" text="DATE ARRIVAL" />
+                  <TableColumn fx:id="citySourceColumn" maxWidth="150.0" prefWidth="89.0" resizable="false" text="CITY SOURCE" />
+                  </columns>
+               <VBox.margin>
+                  <Insets left="8.0" right="9.0" top="30.0" />
+               </VBox.margin>
+              </TableView>
+              <JFXButton onMouseClicked="#bookButton" prefHeight="70.0" prefWidth="187.0" style="-fx-background-color: green;" text="BOOK" textFill="WHITE">
+                  <font>
+                      <Font name="System Bold" size="24.0" />
+                  </font>
+               <VBox.margin>
+                  <Insets left="643.0" top="60.0" />
+               </VBox.margin>
+              </JFXButton>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

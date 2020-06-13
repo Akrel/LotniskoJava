@@ -33,6 +33,7 @@ public class AirportControlServer implements Serializable {
     private UserRepository userRepository;
     @Autowired
     private AirportRepository airportRepository;
+
     /**
      * @param port
      * @throws IOException
@@ -67,17 +68,15 @@ public class AirportControlServer implements Serializable {
                 LoginUserRequest loginUserRequest = (LoginUserRequest) request;
                 LoginUserResponse loginUserResponse = getLoginUser(loginUserRequest);
                 out.writeObject(loginUserResponse);
-            }else if (request instanceof AirportRequest) {
+            } else if (request instanceof AirportRequest) {
                 AirportRequest airportRequest = (AirportRequest) request;
                 AirportResponse airportResponse = getAirportBase(airportRequest);
                 out.writeObject(airportResponse);
-            }else if (request instanceof FindReservationRequest) {
+            } else if (request instanceof FindReservationRequest) {
                 FindReservationRequest findReservationRequest = (FindReservationRequest) request;
                 FindReservationResponse findReservationResponse = findReservation(findReservationRequest);
                 out.writeObject(findReservationResponse);
             }
-
-
 
 
             close(clientSocket, out, in);
@@ -86,33 +85,30 @@ public class AirportControlServer implements Serializable {
     }
 
     private FindReservationResponse findReservation(FindReservationRequest findReservationRequest) {
-        Iterable <Reservation> reservations = reservationRepository.findByClient_Id(findReservationRequest.getUserId());
-        if(reservations == null)
-        {
-            return new FindReservationResponse("NOT FOUND RESERVATION",null);
-        }
-        else {
+        Iterable<Reservation> reservations = reservationRepository.findByClient_Id(findReservationRequest.getUserId());
+        if (reservations == null) {
+            return new FindReservationResponse("NOT FOUND RESERVATION", null);
+        } else {
             ArrayList<Reservation> reservationArrayList = new ArrayList<Reservation>();
-            for(Reservation reservation :  reservations)
-            {
+            for (Reservation reservation : reservations) {
                 reservationArrayList.add(reservation);
             }
-            return new FindReservationResponse("FOUND RESERVATION",reservationArrayList);
+            return new FindReservationResponse("FOUND RESERVATION", reservationArrayList);
 
         }
     }
 
     private AirportResponse getAirportBase(AirportRequest airportRequest) {
         Iterable<Airport> airports = airportRepository.findAll();
-        if(airports == null)
-        {
-            return new AirportResponse("NOT FOUND AIRPORTS",null);
-        }
-        else {
-            return new AirportResponse("FOUND AIRPORTS",airports);
+        if (airports == null) {
+            return new AirportResponse("NOT FOUND AIRPORTS", null);
+        } else {
+            return new AirportResponse("FOUND AIRPORTS", airports);
         }
 
-    };
+    }
+
+    ;
 
     private LoginUserResponse getLoginUser(LoginUserRequest loginUserRequest) {
         User user = userRepository.findUserByEmail(loginUserRequest.getEmail());
@@ -147,7 +143,7 @@ public class AirportControlServer implements Serializable {
         } else if (createUserRequest.getTypeCreate().matches("add")) {
             User chceckUser = userRepository.findUserByEmail(user.getEmail());
             if (chceckUser != null) {
-                return new CreateUserResponse("THIS EMAIL IS USERD: ");
+                return new CreateUserResponse("THIS EMAIL IS USED: ");
             } else {
                 User createdUser = userRepository.save(user);
                 logger.info("Add client");
@@ -160,37 +156,37 @@ public class AirportControlServer implements Serializable {
 
     private CreateReservationResponse getCreateReservationResponse(CreateReservationRequest createReservationRequest) throws IOException {
 
-            Optional<Flight> flightOptional = flightRepository.findById(createReservationRequest.getFlightId());
+        Optional<Flight> flightOptional = flightRepository.findById(createReservationRequest.getFlightId());
 
 
-            if (!flightOptional.isPresent()) {
-                return new CreateReservationResponse("INCORRECT FLIGHT ID - NO SUCH FLIGHT IN DB");
-            }
+        if (!flightOptional.isPresent()) {
+            return new CreateReservationResponse("INCORRECT FLIGHT ID - NO SUCH FLIGHT IN DB");
+        }
 
-            Flight flight = flightOptional.get();
-
-
-            int numberSeats = flight.getNumberSeats();
-            if (numberSeats == 0) {
-                return new CreateReservationResponse("NOT ENOUGH SEATS FOR FLIGHT");
-            }
+        Flight flight = flightOptional.get();
 
 
-            int newNumberOfSeats = numberSeats - 1;
-            flight.setNumberSeats(newNumberOfSeats);
-            flightRepository.save(flight); // flight posiada id, więc repository wykona UPDATE na tym locie
+        int numberSeats = flight.getNumberSeats();
+        if (numberSeats == 0) {
+            return new CreateReservationResponse("NOT ENOUGH SEATS FOR FLIGHT");
+        }
 
 
-            Reservation reservation = new Reservation();
-            reservation.setFlight(flight);
-            reservation.setPassengerName(createReservationRequest.getPassengerName());
-            reservation.setPassengerSurname(createReservationRequest.getPassengerSurname());
-            reservation.setClient(createReservationRequest.getUser());
-            Reservation createdReservation = reservationRepository.save(reservation); // reservation nie posiada id, wiec repository wykona operacje CREATE
+        int newNumberOfSeats = numberSeats - 1;
+        flight.setNumberSeats(newNumberOfSeats);
+        flightRepository.save(flight); // flight posiada id, więc repository wykona UPDATE na tym locie
 
-            logger.info("Dodano rezerwacje: " + createdReservation.getId());
 
-            return new CreateReservationResponse("OK, RESERVATION ID: " + createdReservation.getId());
+        Reservation reservation = new Reservation();
+        reservation.setFlight(flight);
+        reservation.setPassengerName(createReservationRequest.getPassengerName());
+        reservation.setPassengerSurname(createReservationRequest.getPassengerSurname());
+        reservation.setClient(createReservationRequest.getUser());
+        Reservation createdReservation = reservationRepository.save(reservation); // reservation nie posiada id, wiec repository wykona operacje CREATE
+
+        logger.info("Dodano rezerwacje: " + createdReservation.getId());
+
+        return new CreateReservationResponse("OK, RESERVATION ID: " + createdReservation.getId());
 
     }
 

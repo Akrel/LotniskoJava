@@ -34,7 +34,6 @@ public class CreateUserRequest implements Serializable {
     }
 
 
-
     public String getName() {
         return name;
     }
@@ -74,7 +73,6 @@ public class CreateUserRequest implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 
 }

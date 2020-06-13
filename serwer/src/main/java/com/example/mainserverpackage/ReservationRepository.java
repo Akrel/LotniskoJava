@@ -1,6 +1,5 @@
 package com.example.mainserverpackage;
 
-import com.example.model.database.Flight;
 import com.example.model.database.Reservation;
 import org.springframework.data.repository.CrudRepository;
 

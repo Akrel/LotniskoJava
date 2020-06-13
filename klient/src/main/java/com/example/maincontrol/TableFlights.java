@@ -121,22 +121,20 @@ public class TableFlights implements Initializable {
 
     }
 
-    private AnchorPane loadUi(String ui,ListFlightResponse listFlightResponse,Flight flight) {
-        return (AnchorPane) springFxmlLoader.load(ui + ".fxml",listFlightResponse, flight);
+    private AnchorPane loadUi(String ui, ListFlightResponse listFlightResponse, Flight flight) {
+        return (AnchorPane) springFxmlLoader.load(ui + ".fxml", listFlightResponse, flight);
     }
 
     public void bookButton(javafx.scene.input.MouseEvent mouseEvent) {
         Flight chooseFlight = tableView.getSelectionModel().getSelectedItem();
-        if(chooseFlight != null)
-        {
-            AnchorPane root = loadUi("/bookFlight",listFlightResponse,chooseFlight);
+        if (chooseFlight != null) {
+            AnchorPane root = loadUi("/bookFlight", listFlightResponse, chooseFlight);
             AnchorPane.setTopAnchor(root, 50d);
             AnchorPane.setLeftAnchor(root, 150d);
             myAppController.getMainLoad().getChildren().clear();
             myAppController.getMainLoad().getChildren().add(root);
-        }
-        else {
+        } else {
 
-            }
+        }
     }
 }

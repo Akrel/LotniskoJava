@@ -71,17 +71,17 @@ public class EditPanel implements InitializingBean, Initializable {
 
 
                                 } else {
-                                        if (passwordLabel.getText().matches(passRegEx)) {
+                                    if (passwordLabel.getText().matches(passRegEx)) {
                                         if (confirmPasswordLabel.getText().equals(passwordLabel.getText())) {
                                             createEditRequest(false);
                                         } else {
-                                                infoLabel.setText("Invalid Password ");
-                                            }
+                                            infoLabel.setText("Invalid Password ");
+                                        }
 
-                                        } else{
-                                            infoLabel.setText("Empty Password");
-                                        }
-                                        }
+                                    } else {
+                                        infoLabel.setText("Empty Password");
+                                    }
+                                }
 
                             } else {
                                 infoLabel.setText("Bad format phone number, format is 000 000 000");
@@ -103,7 +103,7 @@ public class EditPanel implements InitializingBean, Initializable {
             infoLabel.setText("Empty name");
         }
 
-        this.initialize(null,null);
+        this.initialize(null, null);
     }
 
     public void backButton(MouseEvent mouseEvent) {
@@ -147,8 +147,7 @@ public class EditPanel implements InitializingBean, Initializable {
         return pat.matcher(email).matches();
     }
 
-   public void createEditRequest(boolean checkPassw)
-    {
+    public void createEditRequest(boolean checkPassw) {
 
         CreateUserRequest createUserRequest = new CreateUserRequest();
         CreateUserResponse createUserResponse = null;
@@ -159,14 +158,13 @@ public class EditPanel implements InitializingBean, Initializable {
         createUserRequest.setEmail(emailLabel.getText());
         createUserRequest.setTypeCreate("edit");
         createUserRequest.setPassword(myAppController.getLoggedInUser().getPassword());
-        if(!checkPassw)
-        {
+        if (!checkPassw) {
             createUserRequest.setPassword(passwordLabel.getText());
             createUserResponse = clientControl.registerUser(createUserRequest);
 
         }
         createUserResponse = clientControl.registerUser(createUserRequest);
-       
+
         infoLabel.setText(createUserResponse.getStatus());
         myAppController.setLoggedInUser(createUserResponse.getUser());
     }

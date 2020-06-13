@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Point3D?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #11437d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maincontrol.UserPanel">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #11437d;"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.maincontrol.UserPanel">
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <AnchorPane prefHeight="99.0" prefWidth="580.0" style="-fx-background-color: #093479;">
                     <children>
-                        <VBox layoutY="-1.0" prefHeight="105.0" prefWidth="580.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox layoutY="-1.0" prefHeight="105.0" prefWidth="580.0" AnchorPane.bottomAnchor="9.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="CLIENT PANEL" wrappingWidth="507.13671875">
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="CLIENT PANEL"
+                                      wrappingWidth="507.13671875">
                                     <VBox.margin>
-                                        <Insets left="48.0" right="23.0" top="4.0" />
+                                        <Insets left="48.0" right="23.0" top="4.0"/>
                                     </VBox.margin>
                                     <font>
-                                        <Font name="System Bold" size="72.0" />
+                                        <Font name="System Bold" size="72.0"/>
                                     </font>
                                     <effect>
-                                        <Lighting diffuseConstant="0.7" specularConstant="1.63" specularExponent="16.28">
+                                        <Lighting diffuseConstant="0.7" specularConstant="1.63"
+                                                  specularExponent="16.28">
                                             <bumpInput>
-                                                <Shadow />
+                                                <Shadow/>
                                             </bumpInput>
 
                                         </Lighting>
@@ -42,10 +42,10 @@
                         </VBox>
                     </children>
                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
+                        <Insets left="10.0" right="10.0" top="10.0"/>
                     </VBox.margin>
                     <effect>
-                        <DropShadow color="#796464" height="25.0" radius="12.0" spread="0.2" width="25.0" />
+                        <DropShadow color="#796464" height="25.0" radius="12.0" spread="0.2" width="25.0"/>
                     </effect>
                 </AnchorPane>
                 <HBox prefHeight="100.0" prefWidth="200.0">
@@ -54,110 +54,112 @@
                             <children>
                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NAME: ">
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                     <VBox.margin>
-                                        <Insets left="20.0" top="15.0" />
+                                        <Insets left="20.0" top="15.0"/>
                                     </VBox.margin>
                                 </Text>
                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SURNAME: ">
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                     <VBox.margin>
-                                        <Insets left="20.0" top="15.0" />
+                                        <Insets left="20.0" top="15.0"/>
                                     </VBox.margin>
                                 </Text>
                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="E-MAIL: ">
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                     <VBox.margin>
-                                        <Insets left="20.0" top="15.0" />
+                                        <Insets left="20.0" top="15.0"/>
                                     </VBox.margin>
                                 </Text>
                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PHONE NUMBER: ">
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                     <VBox.margin>
-                                        <Insets left="20.0" top="15.0" />
+                                        <Insets left="20.0" top="15.0"/>
                                     </VBox.margin>
                                 </Text>
                             </children>
                             <HBox.margin>
-                                <Insets left="103.0" />
+                                <Insets left="103.0"/>
                             </HBox.margin>
                         </VBox>
                         <VBox prefHeight="156.0" prefWidth="244.0">
                             <children>
                                 <Text fx:id="nameLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
                                     <VBox.margin>
-                                        <Insets left="15.0" top="15.0" />
+                                        <Insets left="15.0" top="15.0"/>
                                     </VBox.margin>
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Text>
                                 <Text fx:id="surnameLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
                                     <VBox.margin>
-                                        <Insets left="15.0" top="15.0" />
+                                        <Insets left="15.0" top="15.0"/>
                                     </VBox.margin>
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Text>
                                 <Text fx:id="emailLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
                                     <VBox.margin>
-                                        <Insets left="15.0" top="15.0" />
+                                        <Insets left="15.0" top="15.0"/>
                                     </VBox.margin>
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Text>
                                 <Text fx:id="phoneNumberLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
                                     <VBox.margin>
-                                        <Insets left="15.0" top="15.0" />
+                                        <Insets left="15.0" top="15.0"/>
                                     </VBox.margin>
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Text>
                             </children>
                         </VBox>
                     </children>
                     <VBox.margin>
-                        <Insets top="21.0" />
+                        <Insets top="21.0"/>
                     </VBox.margin>
                 </HBox>
-                <TableView fx:id="tableFlight" prefHeight="154.0" prefWidth="560.0" style="-fx-background-color: #70767B;">
+                <TableView fx:id="tableFlight" prefHeight="154.0" prefWidth="560.0"
+                           style="-fx-background-color: #70767B;">
                     <columns>
-                        <TableColumn fx:id="destinationLabel" prefWidth="100.0" text="DESTINATION" />
-                        <TableColumn fx:id="dateDepartureLabel" prefWidth="150.0" text="DATE_DEPARTURE" />
-                        <TableColumn fx:id="sourceCityLabel" prefWidth="100.0" text="SOURCE CITY" />
-                        <TableColumn fx:id="dateArrivalLabel" prefWidth="150.0" text="DATE ARRIVAL" />
-                        <TableColumn fx:id="priceLabel" prefWidth="60.0" text="PRICE" />
+                        <TableColumn fx:id="destinationLabel" prefWidth="100.0" text="DESTINATION"/>
+                        <TableColumn fx:id="dateDepartureLabel" prefWidth="150.0" text="DATE_DEPARTURE"/>
+                        <TableColumn fx:id="sourceCityLabel" prefWidth="100.0" text="SOURCE CITY"/>
+                        <TableColumn fx:id="dateArrivalLabel" prefWidth="150.0" text="DATE ARRIVAL"/>
+                        <TableColumn fx:id="priceLabel" prefWidth="60.0" text="PRICE"/>
                     </columns>
                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="25.0" />
+                        <Insets left="20.0" right="20.0" top="25.0"/>
                     </VBox.margin>
                 </TableView>
                 <HBox prefWidth="600.0" VBox.vgrow="SOMETIMES">
                     <children>
-                        <JFXButton onMouseClicked="#editProfileBUtton" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #343C43;" text="EDIT PROFILE" textFill="WHITE">
+                        <JFXButton onMouseClicked="#editProfileBUtton" prefHeight="50.0" prefWidth="180.0"
+                                   style="-fx-background-color: #343C43;" text="EDIT PROFILE" textFill="WHITE">
                             <font>
-                                <Font name="System Bold" size="18.0" />
+                                <Font name="System Bold" size="18.0"/>
                             </font>
                             <HBox.margin>
-                                <Insets left="400.0" />
+                                <Insets left="400.0"/>
                             </HBox.margin>
                             <rotationAxis>
-                                <Point3D />
+                                <Point3D/>
                             </rotationAxis>
                         </JFXButton>
                     </children>
                     <VBox.margin>
-                        <Insets top="116.0" />
+                        <Insets top="116.0"/>
                     </VBox.margin>
                 </HBox>
             </children>

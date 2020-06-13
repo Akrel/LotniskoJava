@@ -18,9 +18,6 @@ public class FindReservationResponse implements Serializable {
     }
 
 
-
-
-
     public FindReservationResponse(String staus, ArrayList<Reservation> listOfFlights) {
         this.staus = staus;
         this.listOfReservation = listOfFlights;
@@ -33,8 +30,6 @@ public class FindReservationResponse implements Serializable {
     public void setStaus(String staus) {
         this.staus = staus;
     }
-
-
 
 
 }

@@ -18,7 +18,6 @@ public class ListFlightResponse<F> implements Serializable {
         return listOfFlights;
     }
 
-
     public void insertToList(Flight obiekt) {
         listOfFlights.add(obiekt);
     }

@@ -22,7 +22,6 @@ public class AirportResponse implements Serializable {
     }
 
 
-
     public AirportResponse(String status, Iterable<Airport> airports) {
         this.status = status;
         this.listOfAirport = airports;

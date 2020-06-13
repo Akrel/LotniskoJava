@@ -17,7 +17,7 @@ public class Reservation implements Serializable {
     private Flight flight;
 
     @ManyToOne
-    @JoinColumn(name = "client",referencedColumnName = "id")
+    @JoinColumn(name = "client", referencedColumnName = "id")
     private User client;
 
     public User getClient() {
@@ -29,7 +29,6 @@ public class Reservation implements Serializable {
     }
 
 
-
     public Reservation() {
     }
 
@@ -37,9 +36,11 @@ public class Reservation implements Serializable {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getPassengerName() {
         return passengerName;
     }
