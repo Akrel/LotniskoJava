@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
- * Klasa
+ * Klasa do obsługi komunikacji serwera z aplikacją kliencką
  */
 @Component
 public class ClientControl {
@@ -20,6 +20,7 @@ public class ClientControl {
 
     /**
      * Metoda tworząca requesta dotyczącego lotów i wysyła go do serwera
+     *
      * @param request żadanie do serwera
      * @return zwraca wiadomość odebraną od serwera
      */
@@ -35,8 +36,10 @@ public class ClientControl {
 
         return listFlightResponse;
     }
+
     /**
      * Metoda tworząca requesta dotyczącego rezerwacji i wysyła go do serwera
+     *
      * @param request żadanie do serwera
      * @return zwraca wiadomość odebraną od serwera
      */
@@ -48,6 +51,7 @@ public class ClientControl {
 
     /**
      * Metoda tworząca requesta dotyczącego logownia użytkownika i wysyła go do serwera
+     *
      * @param loginUserRequest żadanie do serwera
      * @return zwraca wiadomość odebraną od serwera
      */
@@ -55,8 +59,10 @@ public class ClientControl {
         LoginUserResponse loginUserResponse = (LoginUserResponse) send(loginUserRequest);
         return loginUserResponse;
     }
+
     /**
      * Metoda tworząca requesta dotyczącego rezerwacji użytkownika i wysyła go do serwera
+     *
      * @param request żadanie do serwera
      * @return zwraca wiadomość odebraną od serwera
      */
@@ -64,8 +70,10 @@ public class ClientControl {
         CreateUserResponse createUserResponse = (CreateUserResponse) send(request);
         return createUserResponse;
     }
+
     /**
      * Metoda tworząca requesta dotyczącego lotnisk i wysyła go do serwera
+     *
      * @param request żadanie do serwera
      * @return zwraca wiadomość odebraną od serwera
      */
@@ -73,8 +81,10 @@ public class ClientControl {
         AirportResponse airportResponse = (AirportResponse) send(request);
         return airportResponse;
     }
+
     /**
      * Metoda tworząca requesta dotyczącego wyszukania rezerwacji i wysyła go do serwera
+     *
      * @param request żadanie do serwera
      * @return zwraca wiadomość odebraną od serwera
      */
@@ -115,9 +125,10 @@ public class ClientControl {
 
     /**
      * Metoda zamyka socket oraz strumienie w kliencie
+     *
      * @param clientSocket socket klienta
-     * @param out strumień wyjścia
-     * @param in strumień wejścia
+     * @param out          strumień wyjścia
+     * @param in           strumień wejścia
      */
     private void closeConnection(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) {
         try {

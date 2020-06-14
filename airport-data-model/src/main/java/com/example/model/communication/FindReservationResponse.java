@@ -4,7 +4,10 @@ import com.example.model.database.Reservation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * Klasa jest modelem komunikacji pomiędzy serwerem a klientem,
+ * klasa jest odpowiedzią na żądanie klienta przechowuje infromacje pobrane z bazy dotyczące znalezionych rezerwacji
+ */
 public class FindReservationResponse implements Serializable {
     private String staus;
     private ArrayList<Reservation> listOfReservation;

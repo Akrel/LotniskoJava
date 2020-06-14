@@ -75,7 +75,12 @@ public class UserPanel implements InitializingBean, Initializable {
         myAppController.hideAllSliderMenu();
     }
 
-
+    /**
+     * MMetoda ładująca dane do elementów gui
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nameLabel.setText(myAppController.getLoggedInUser().getName());

@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Klasa lotów przechowuje informacje o lotnisku
+ * Klasa jest mapowana z modelu obiektowego na obiekt realcyjny
+ */
 @Entity
 public class Flight implements Serializable {
     @Id

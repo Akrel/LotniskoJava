@@ -5,7 +5,10 @@ import com.example.model.database.Flight;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Klasa jest modelem komunikacji pomiędzy serwerem a klientem,
+ * klasa jest odpowiedzią na żądanie klienta przechowuje infromacje pobrane z bazy dotyczące lotów
+ */
 public class ListFlightResponse<F> implements Serializable {
 
     private ArrayList<Flight> listOfFlights;

@@ -117,7 +117,7 @@ public class AirportControlServer implements Serializable {
      * Metoda do obsługi żądań dotyczących lotniska
      *
      * @param airportRequest żądanie od klienta dotyczące danych z lotniksa
-     * @return  pobrane informacjie z bazy dotyczące lotniska
+     * @return pobrane informacjie z bazy dotyczące lotniska
      */
     private AirportResponse getAirportBase(AirportRequest airportRequest) {
         Iterable<Airport> airports = airportRepository.findAll();
@@ -185,6 +185,12 @@ public class AirportControlServer implements Serializable {
         }
     }
 
+    /**
+     * Metoda do obsługi żądań dotyczących rezerwacji
+     * @param createReservationRequest
+     * @return zwaraca obiekt komunikat
+     * @throws IOException
+     */
     private CreateReservationResponse getCreateReservationResponse(CreateReservationRequest createReservationRequest) throws IOException {
 
         Optional<Flight> flightOptional = flightRepository.findById(createReservationRequest.getFlightId());
@@ -230,9 +236,7 @@ public class AirportControlServer implements Serializable {
     private ListFlightResponse getListFlightResponse(ListFlightRequest listFlightRequest) {
         Iterable<Flight> all = null;
         if (!(listFlightRequest.getOrigin().isEmpty() && listFlightRequest.getDestination().isEmpty())) {
-            all = flightRepository.findByOriginCityAndDestinationCity(listFlightRequest.getOrigin(), listFlightRequest.getDestination());
-        } else if (!(listFlightRequest.getArrivalDate().toString().isEmpty() && listFlightRequest.getDepartureDate().toString().isEmpty())) {
-            all = flightRepository.findByDateArrivalAndAndDateDeparture(listFlightRequest.getArrivalDate().toString(), listFlightRequest.getDepartureDate().toString());
+            all = flightRepository.findFlightSearchingFlight(listFlightRequest.getDepartureDate(), listFlightRequest.getArrivalDate(), listFlightRequest.getOrigin(), listFlightRequest.getDestination());
         }
 
         ListFlightResponse flightResponse = new ListFlightResponse();

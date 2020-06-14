@@ -3,7 +3,10 @@ package com.example.model.communication;
 import com.example.model.database.User;
 
 import java.io.Serializable;
-
+/**
+ * Klasa jest modelem komunikacji pomiędzy serwerem a klientem,
+ * klasa jest odpowiedzią na żądanie klienta przechowuje infromacje pobrane z bazy dotyczące utworzenia użytkownika
+ */
 public class CreateUserResponse implements Serializable {
 
     private String status;

@@ -6,7 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-
+/**
+ * Klasa klienta przechowuje infromacje o kliencie
+ * Klasa jest mapowana z modelu obiektowego na obiekt realcyjny
+ */
 @Entity(name = "Client") // This tells Hibernate to make a table out of this class
 public class User implements Serializable {
 

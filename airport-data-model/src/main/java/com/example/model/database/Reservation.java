@@ -4,6 +4,10 @@ package com.example.model.database;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Klasa rezerwacji przechowuje infroamcje o zarezerwowanych lotach
+ * Klasa jest mapowana z modelu obiektowego na obiekt realcyjny
+ */
 @Entity
 public class Reservation implements Serializable {
     @Id

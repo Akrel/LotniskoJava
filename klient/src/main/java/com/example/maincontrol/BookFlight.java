@@ -31,7 +31,6 @@ import java.util.ResourceBundle;
 
 /**
  * Klasa obsłgująca rezerwacje biletów.
- *
  */
 
 @Controller
@@ -73,16 +72,22 @@ public class BookFlight implements Initializable {
     private Flight flight;
 
     /**
-     *  Konstruktor klasy BookFlight
+     * Konstruktor klasy BookFlight
+     *
      * @param listFlightResponse
-     * @param flight wybrany lot
+     * @param flight             wybrany lot
      */
     BookFlight(ListFlightResponse listFlightResponse, Flight flight) {
         this.flight = flight;
         this.listFlightResponse = listFlightResponse;
     }
 
-
+    /**
+     * Metoda ładująca dane do elementów gui
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Flight> lista = FXCollections.observableArrayList();
@@ -111,6 +116,12 @@ public class BookFlight implements Initializable {
         tableViewBook.setItems(lista);
     }
 
+    /**
+     * metoda do obsługi przeycisku do rezerwacji lotu
+     * pobiera dane z pol oraz loti wysyła je do serwera
+     *
+     * @param mouseEvent
+     */
     public void payButton(MouseEvent mouseEvent) {
 
         if (nameField.getText().isEmpty() || surnameField.getText().isEmpty()) {
@@ -137,6 +148,7 @@ public class BookFlight implements Initializable {
     }
 
     /**
+     * Metoda do obsługi przycisku cofania się do wyszukiwania lotu
      *
      * @param mouseEvent
      */

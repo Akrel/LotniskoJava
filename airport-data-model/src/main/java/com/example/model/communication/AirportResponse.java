@@ -4,7 +4,10 @@ import com.example.model.database.Airport;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * Klasa jest modelem komunikacji pomiędzy serwerem a klientem,
+ * klasa jest odpowiedzią na żądanie klienta przechowuje infromacje pobrane z bazy dotyczące lotnisk.
+ */
 public class AirportResponse implements Serializable {
     public String getStatus() {
         return status;

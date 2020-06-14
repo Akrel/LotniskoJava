@@ -21,7 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import java.io.IOException;
 import java.net.URL;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -53,8 +56,6 @@ public class SearchFlightController implements InitializingBean, Initializable {
     private ChoiceBox<String> fromLabel;
     public JFXButton buttonUser;
 
-    static ObservableList<String> list = FXCollections.observableArrayList("Krakow", "Gdansk", "Katowice", "Radom");
-
 
     /**
      * Metoda obłsługuje przycisk do wyszukiwania lotów
@@ -65,17 +66,14 @@ public class SearchFlightController implements InitializingBean, Initializable {
             myAppController.getMainLoad().getChildren().clear();
         }
 
-        // wyszukaj liste lotow
         ListFlightRequest request = new ListFlightRequest();
 
 
         request.setDestination(destinationLabel.getValue());
         request.setOrigin(fromLabel.getValue());
-
-
+        request.setDepartureDate(Date.from(departureDateLabel.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        request.setArrivalDate(Date.from(arrivalDateLabel.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         ListFlightResponse listFlightResponse = clientControl.listFlights(request);
-
-        // stworz nowy widok, przekazujac mu wyszukana liste lotow
         AnchorPane root = loadUi("/tableFlights", listFlightResponse);
         AnchorPane.setRightAnchor(root, 15d);
         myAppController.getMainLoad().getChildren().add(root);
@@ -98,17 +96,23 @@ public class SearchFlightController implements InitializingBean, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> listCity = FXCollections.observableArrayList();
-        AirportRequest request = new AirportRequest();
-        AirportResponse airportResponse = clientControl.getAirports(request);
-        Iterable<Airport> cityAirport = airportResponse.getListOfAirport();
-        logger.info(airportResponse.getStatus());
-        for (Airport t : cityAirport) {
-            listCity.add(t.getCity());
-        }
+        try{
+            ObservableList<String> listCity = FXCollections.observableArrayList();
+            AirportRequest request = new AirportRequest();
+            AirportResponse airportResponse = clientControl.getAirports(request);
+            Iterable<Airport> cityAirport = airportResponse.getListOfAirport();
+            logger.info(airportResponse.getStatus());
+            for (Airport t : cityAirport) {
+                listCity.add(t.getCity());
+            }
 
-        fromLabel.setItems(listCity);
-        destinationLabel.setItems(listCity);
+            fromLabel.setItems(listCity);
+            destinationLabel.setItems(listCity);
+        }catch (Exception e)
+        {
+            e.printStackTrace(System.out);
+            logger.error("SERVER DOWN");
+        }
     }
 
     private AnchorPane loadUi(String ui, ListFlightResponse listFlightResponse) {

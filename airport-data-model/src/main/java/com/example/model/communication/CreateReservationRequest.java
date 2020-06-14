@@ -4,7 +4,10 @@ package com.example.model.communication;
 import com.example.model.database.User;
 
 import java.io.Serializable;
-
+/**
+ * Klasa jest modelem komunikacji pomiędzy serwerem a klientem,
+ * klasa jest żądaniem od klienta do serwera informacji dotyczących tworzenia rezerwacji.
+ */
 public class CreateReservationRequest implements Serializable {
     private User user;
     private int flightId;

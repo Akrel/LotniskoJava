@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 /**
- * Klasa
+ * Klasa do obsługi edycji panelu
  */
 @Controller
 @Component

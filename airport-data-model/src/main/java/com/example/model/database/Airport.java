@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- *  Klasa lotniska przechowuje dane o lotnisku.
- *  Na podstawie klasy tworzona jest tabela w bazie danych.
+ * Klasa lotniska przechowuje informacje o lotnisku
+ * Klasa jest mapowana z modelu obiektowego na obiekt realcyjny
  */
 @Entity
 public class Airport implements Serializable {
