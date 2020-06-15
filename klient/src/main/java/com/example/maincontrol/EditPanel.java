@@ -19,7 +19,8 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 /**
- * Klasa do obsługi edycji panelu
+ * Klasa do obsługi edycji panelu uzytkownika
+ *
  */
 @Controller
 @Component

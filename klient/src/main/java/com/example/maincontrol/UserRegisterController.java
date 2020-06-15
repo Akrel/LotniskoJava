@@ -17,7 +17,7 @@ import org.springframework.stereotype.Controller;
 import java.util.regex.Pattern;
 
 /**
- * Klasa do obsługi pranelu rejestracji.
+ * Klasa do obsługi panelu rejestracji użytkownika.
  */
 @Controller
 @Component

@@ -94,6 +94,11 @@ public class SearchFlightController implements InitializingBean, Initializable {
 
     }
 
+    /**
+     * Metoda ładujaca dane do elementó GUi
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try{

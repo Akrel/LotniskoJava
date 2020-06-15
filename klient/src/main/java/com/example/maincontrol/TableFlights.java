@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * klasa do obsługi tabeli z wyszukanymi lotami.
+ * Klasa do obsługi tabeli z wyszukanymi lotami.
  */
 @Controller
 @Component

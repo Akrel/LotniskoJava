@@ -17,6 +17,7 @@ import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -121,11 +122,18 @@ public class AirportControlServer implements Serializable {
      */
     private AirportResponse getAirportBase(AirportRequest airportRequest) {
         Iterable<Airport> airports = airportRepository.findAll();
-        if (airports == null) {
+        List<Airport> airportList = new ArrayList<>();
+        for (Airport airport : airports) {
+            airportList.add(airport);
+        }
+        if (airportList.isEmpty()) {
             return new AirportResponse("NOT FOUND AIRPORTS", null);
         } else {
             return new AirportResponse("FOUND AIRPORTS", airports);
         }
+
+
+
 
     }
 
@@ -153,7 +161,7 @@ public class AirportControlServer implements Serializable {
 
     }
 
-    /**
+    /** Tworzy odpowiedź dla klienta z żądania utworzenia użytkownika
      * @param createUserRequest
      * @return
      */

@@ -18,15 +18,11 @@ public class SpringFxmlLoader {
      * Metoda ładująca pliki fxml do klasy
      * @param url
      * @param params
-     * @return
+     * @return zwraca załadowany obiekt
      */
     public Object load(String url, Object... params) {
         try (InputStream fxmlStream = SpringFxmlLoader.class.getResourceAsStream(url)) {
             FXMLLoader loader = new FXMLLoader();
-            // applicationContext.getBean(aClass, params)
-            // aClass = np. TableFlights.class
-            // params = np. ListFlightResponse, potrzebny do zainicjalizowania kontrolera TableFlights
-            // jezeli params == null, po prostu tworzy się bean bez parametrów
             loader.setControllerFactory(aClass -> applicationContext.getBean(aClass, params));
             return loader.load(fxmlStream);
         } catch (IOException ioException) {
